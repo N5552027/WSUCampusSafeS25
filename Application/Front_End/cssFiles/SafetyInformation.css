@@ -1,0 +1,63 @@
+/* Global Modifiers */
+
+
+/* Header */
+.header h2{
+   text-align: center;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header .navigation {
+    color: white;
+    display: flex;
+    gap: 1vw;
+    justify-content: center;
+    align-items: center;
+}
+
+.header .nav-link {
+    background-color: #A60F2D ;
+}
+
+/* OVERALL REMINDER */
+.OverallReminder {
+    background-color: #A60F2D;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+/*SAFETY INFORMATION*/
+/*Active Shooter*/
+.ActiveShooterContainer {
+    background-color: #726E6D;
+    color: white;
+    padding: 3px;
+}
+
+.ActiveShooterContainer h2 {
+   text-decoration-line: underline;
+}
+
+/*Fire Safety*/
+.FireSafety {
+    background-color: #726E6D;
+    color: white;
+    padding: 3px;
+}
+/*Medical Safety and Advice*/
+
+/*Sexual Assault and Rape*/
+
+/* footer */
+.footer-content {
+    background-color: #A60F2D;
+    color: white;
+    padding: 5px;
+    text-align: center;
+}
