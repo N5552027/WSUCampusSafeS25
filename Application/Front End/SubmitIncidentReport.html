@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Incident Report Submission</title>
+    
+    <link rel="stylesheet" href="./cssFiles/SubmitIncidentReport.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script src="./JScriptFiles/SubmitIncidentReport.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h2>Submit an Incident Report</h2>
+        <form id="reportForm">
+            <label for="title">Title of Incident:</label>
+            <input type="text" id="title" required>
+
+            <label for="date">Date:</label>
+            <input type="date" id="date" required>
+
+            <label for="time">Time:</label>
+            <input type="time" id="time" required>
+
+            <label for="description">Description:</label>
+            <textarea id="description" rows="4" required></textarea>
+
+            <button type="button" onclick="submitReport()">Submit Report</button>
+        </form>
+    </div>
+</body>
+</html>
