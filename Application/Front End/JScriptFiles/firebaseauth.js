@@ -31,7 +31,6 @@ register.addEventListener('click', (event)=>{
     event.preventDefault();
     const email = document.getElementById('rEmail').value;
     const password = document.getElementById('rPassword').value;
-
     const auth = getAuth();
     const db = getFirestore();
 
@@ -53,11 +52,37 @@ register.addEventListener('click', (event)=>{
     })
     .catch((error)=>{
         const errorCode=error.code;
-        if(errorCode=='auth/email-already-in-use')
+        if(errorCode=='auth/email-already-in-use'){
             showMessage('Email address used by another account', 'registerMessage');
+        }           
         else{
             showMessage('Error Creating User', 'registerMessage');
         }
     })
 })
 
+const login=document.getElementById('lButton')
+login.addEventListener('click', (event)=>{
+    event.preventDefault();
+    const email = document.getElementById('lEmail').value;
+    const password = document.getElementById('lPassword').value;
+    const auth = getAuth();
+    const db = getFirestore();
+
+    signInWithEmailAndPassword(auth,email,password)
+    .then((userCredential)=>{
+        showMessage("Successfully Logged In", 'loginMessage');
+        const user = userCredential.user;
+        localStorage.setItem('loggedInUserId', user.uid);
+        window.location.href='HomePage.html';
+    })
+    .catch((error)=>{
+        const errorCode=error.code;
+        if(errorCode=='auth/invalid-credential'){
+            showMessage('Incorrect Email or Password', 'loginMessage');
+        }        
+        else{
+            showMessage('Account does not exist', 'loginMessage');
+        }
+    })
+})
