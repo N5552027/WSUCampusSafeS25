@@ -1,4 +1,3 @@
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
 import {getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword} from "https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js"
 import {getFirestore, setDoc, doc} from "https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js"
@@ -21,14 +20,12 @@ function showMessage(message,divID){
     messageDiv.style.display = "block";
     messageDiv.innerHTML = message;
     messageDiv.style.opacity = 1;
-    setTimeout(function(){
-        messageDiv.style.opacity=0;
-    },5000);
 }
 
-const register=document.getElementById('rButton')
+const register = document.getElementById('rButton')
 register.addEventListener('click', (event)=>{
     event.preventDefault();
+    const fName = document.getElementById('rFName').value;
     const email = document.getElementById('rEmail').value;
     const password = document.getElementById('rPassword').value;
     const auth = getAuth();
@@ -38,7 +35,8 @@ register.addEventListener('click', (event)=>{
     .then((userCredential)=>{
         const user = userCredential.user;
         const userData = {
-            email: email
+            email: email,
+            fName: fName
         };
         showMessage('Successfully Created Account', 'registerMessage')
         const docRef = doc(db,"users", user.uid);
@@ -47,7 +45,7 @@ register.addEventListener('click', (event)=>{
             window.location.href='login.html';
         })
         .catch((error)=>{
-            console.error("Error Creating Account", error);
+            console.error("Error: Cannot create Account", error);
         })
     })
     .catch((error)=>{
@@ -61,7 +59,7 @@ register.addEventListener('click', (event)=>{
     })
 })
 
-const login=document.getElementById('lButton')
+const login = document.getElementById('lButton')
 login.addEventListener('click', (event)=>{
     event.preventDefault();
     const email = document.getElementById('lEmail').value;

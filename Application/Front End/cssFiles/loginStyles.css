@@ -66,6 +66,7 @@ header {
 
 .wrapper{
     width: 420px;
+    height: 400px;
     background:transparent;
     border:2px solid rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(10px);
@@ -76,7 +77,12 @@ header {
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    transition: height 0.2s ease;
 }
+.wrapper.active{
+    height: 480px;
+}
+
 .wrapper h1{
     font-size: 36px;
     text-align: center;
