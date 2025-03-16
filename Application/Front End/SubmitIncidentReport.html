@@ -10,17 +10,44 @@
     <script src="./JScriptFiles/SubmitIncidentReport.js"></script>
 </head>
 <body>
+    <div class= "header">
+        <h2 class="ProjectName">WSU CampusSafe</h2>
+        <nav class="navigation">
+            <a href="HomePage.html"> Home</a>
+            <a href="SafetyInformation.html"> Safety Information</a>
+            <a href="Contact.html"> Contact Us</a>
+            <a href="SubmitIncidentReport.html">Submit Incident Report</a>
+        </nav>
+    </div>
+
     <div class="container">
         <h2>Submit an Incident Report</h2>
         <form id="reportForm">
             <label for="title">Title of Incident:</label>
             <input type="text" id="title" required>
 
+            <select id="type" required>
+                <option value="1">Sexual Assault/Rape</option>
+                <option value="2">Fire</option>
+                <option value="3">Shooter/Gunshots</option>
+                <option value="4">Medical</option>
+                <option value="5">Assault</option>
+                <option value="6">Harassment</option>
+            </select>
+
             <label for="date">Date:</label>
             <input type="date" id="date" required>
 
             <label for="time">Time:</label>
             <input type="time" id="time" required>
+
+            <label for="location">Location:</label>
+            <select id="location" required>
+                <option value="1">Compton Union Building</option>
+                <option value="2">Wilson-Short Hall</option>
+                <option value="3">Terrel Libraries</option>
+                <option value="4">CUE</option>
+            </select>
 
             <label for="description">Description:</label>
             <textarea id="description" rows="4" required></textarea>
