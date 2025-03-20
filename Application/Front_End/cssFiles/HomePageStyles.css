@@ -1,0 +1,40 @@
+body {
+    padding: 30px;
+    background: linear-gradient(to right, grey, white)
+}
+
+h1 {
+    text-align: center;
+}
+
+button {
+    color: crimson;
+    background-color: white;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+}
+
+button:hover {
+    text-decoration: underline;
+    color: grey;
+}
+
+button, div {
+    margin-left: 15%;
+    font-size: 20px;
+    padding: 10px;
+}
+
+div {
+    font-weight: 400;
+    color: black;
+}
+
+span {
+    font-weight: 600;
+    font-size: 22px;
+    color: black;
+}
