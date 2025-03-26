@@ -39,7 +39,7 @@ register.addEventListener('click', (event)=>{
             fName: fName
         };
         showMessage('Successfully Created Account', 'registerMessage')
-        const docRef = doc(db,"users", user.uid);
+        const docRef = doc(db,"Users", user.uid);
         setDoc(docRef,userData)
         .then(()=>{
             window.location.href='login.html';
