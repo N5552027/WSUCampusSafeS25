@@ -9,22 +9,35 @@
 <body class="flex items-center justify-center h-screen bg-gray-100">
     <div class="w-full max-w-md p-6 bg-white rounded-2xl shadow-lg">
         <h1 class="text-xl font-bold text-center mb-4">Incident Search</h1>
-        <input id="search" type="text" placeholder="Search incidents..." class="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+        
+        <!-- Search bar -->
+        <input id="search" type="text" placeholder="Search incidents..." 
+            class="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+        
+        <!-- Sorting buttons -->
         <div class="mt-4 flex justify-center gap-2">
-            <button onclick="sortResults('name')" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">Sort by Name</button>
-            <button onclick="sortResults('time')" class="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600">Sort by Time</button>
-            <button onclick="sortResults('date')" class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600">Sort by Date</button>
+            <button onclick="setSortMode('title')" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">
+                Sort by Name
+            </button>
+            <button onclick="setSortMode('date')" class="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600">
+                Sort by Date
+            </button>
+            <button onclick="setSortMode('time')" class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600">
+                Sort by Time
+            </button>
         </div>
-        <ul id="results" class="mt-4 max-h-60 overflow-auto"></ul>
+
+        <!-- Incident list -->
+        <ul id="results" class="mt-4 max-h-60 overflow-auto border rounded-lg p-2"></ul>
     </div>
 
     <script>
-        let incidents = []; // Stores CSV data
+        let incidents = [];
+        let currentSortMode = 'title';
 
-        // Load CSV file
         async function loadCSV() {
             try {
-                const response = await fetch('/public/incident_report.csv');
+                const response = await fetch('/incident_management/public/incident_report.csv');
                 const data = await response.text();
                 parseCSV(data);
             } catch (error) {
@@ -32,25 +45,25 @@
             }
         }
 
-        // Parse CSV into an array of objects
         function parseCSV(csvText) {
             const rows = csvText.trim().split("\n");
-            const headers = rows[0].split(","); // First row is the header
+            const headers = rows[0].split(",");
 
             incidents = rows.slice(1).map(row => {
                 const values = row.split(",");
                 return {
-                    name: values[0].trim(),
-                    time: values[1].trim(),
-                    date: values[2].trim(),
-                    description: values.slice(3).join(",").trim() // In case of commas in description
+                    title: values[0].trim(),
+                    date: values[1].trim(),
+                    time: values[2].trim(),
+                    description: values.slice(3).join(",").trim()
                 };
             });
 
-            displayResults(incidents);
+            // Initially sort by name
+            incidents.sort((a, b) => a.title.toLowerCase().localeCompare(b.title.toLowerCase()));
+            filterAndDisplay();
         }
 
-        // Display results in the list
         function displayResults(filteredIncidents) {
             const resultsList = document.getElementById("results");
             resultsList.innerHTML = "";
@@ -63,30 +76,52 @@
             filteredIncidents.forEach(incident => {
                 const li = document.createElement("li");
                 li.classList = "p-2 border-b";
-                li.innerHTML = `<strong>${incident.name}</strong> - ${incident.time} - ${incident.date} <br> ${incident.description}`;
+                li.innerHTML = `<strong>${incident.title}</strong> - ${incident.date} ${incident.time} <br> ${incident.description}`;
                 resultsList.appendChild(li);
             });
         }
 
-        // Search functionality
         document.getElementById("search").addEventListener("input", function () {
-            const query = this.value.toLowerCase();
-            const filtered = incidents.filter(incident => 
-                incident.name.toLowerCase().includes(query) ||
-                incident.time.toLowerCase().includes(query) ||
-                incident.date.toLowerCase().includes(query) ||
-                incident.description.toLowerCase().includes(query)
-            );
-            displayResults(filtered);
+            filterAndDisplay();
         });
 
-        // Sort functionality
-        function sortResults(key) {
-            incidents.sort((a, b) => a[key].localeCompare(b[key]));
-            displayResults(incidents);
+        function filterAndDisplay() {
+            const query = document.getElementById("search").value.toLowerCase();
+            
+            // Only filter based on title and sort alphabetically
+            let filtered = incidents.filter(incident => 
+                incident.title.toLowerCase().startsWith(query)
+            );
+
+            sortResults(filtered, currentSortMode);
+            displayResults(filtered);
         }
 
-        // Load CSV on page load
+        function setSortMode(mode) {
+            currentSortMode = mode;
+            filterAndDisplay();
+        }
+
+        function sortResults(data, key) {
+            if (key === "title") {
+                data.sort((a, b) => a.title.toLowerCase().localeCompare(b.title.toLowerCase()));
+            } else if (key === "date") {
+                data.sort((a, b) => parseDate(a.date) - parseDate(b.date)); // Earliest date first
+            } else if (key === "time") {
+                data.sort((a, b) => parseTime(a.time) - parseTime(b.time)); // Earliest time first
+            }
+        }
+
+        function parseDate(dateStr) {
+            const [year, month, day] = dateStr.split("-").map(Number);
+            return new Date(year, month - 1, day);
+        }
+
+        function parseTime(timeStr) {
+            const [hours, minutes] = timeStr.split(":").map(Number);
+            return hours * 60 + minutes;  // Convert to minutes to make comparison easier
+        }
+
         loadCSV();
     </script>
 </body>
