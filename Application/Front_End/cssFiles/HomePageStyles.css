@@ -1,40 +1,177 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
 body {
-    padding: 30px;
-    background: linear-gradient(to right, grey, white)
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+	background: url(../Assets/loginbg.jpg);
+    background-size: cover;
+	background-position: center;
 }
 
-h1 {
-    text-align: center;
+header {
+    position: fixed;
+	top: 0;
+	left: 0;
+	height: 84px;
+    width:100%;
+    padding: 15px 100px;
+    background: grey;
+    border-bottom:4px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-button {
-    color: crimson;
-    background-color: white;
-    padding: 5px;
-    border-radius: 5px;
-    font-size: 1rem;
-    font-weight: bold;
-    border: none;
+.ProjectName  {
+    font-size: 2em;
+    color: white;
+    user-select: none;
 }
 
-button:hover {
-    text-decoration: underline;
-    color: grey;
+.headerNavigation a {
+	padding-top: 0;
+	position: center;
+    font-size: 1.1em;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 40px;
 }
 
-button, div {
-    margin-left: 15%;
-    font-size: 20px;
-    padding: 10px;
+.container {
+	display: flex;
+	position: center;
+	width: 650px;
+	height: 400px;
+	margin: auto auto;
+	border-radius: 15px;
+	background: rgb(36, 36, 37);
+	border:2px solid rgba(255, 255, 255, 0.2);
+	backdrop-filter: blur(10px);
 }
 
-div {
-    font-weight: 400;
-    color: black;
+.sidebarNavigation {
+	padding-top: 1.875em;
+	
+	ul {
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+	}
+	
+	a {
+		color: white;
+		display: block;
+		padding: 1em;
+		position: relative;
+		text-decoration: none;
+		transition: all 0.3s ease;
+		
+		&:before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 2px;
+			height: 0;
+			transition: height 0.3s ease;
+			background-color: #fff;
+		}
+		
+		&:hover,
+		&:focus {
+			background-color: darkgray;
+			color: #fff;
+			
+			&:before {
+				height: 100%;
+			}
+		}
+	}
 }
 
-span {
-    font-weight: 600;
-    font-size: 22px;
-    color: black;
+.icon {
+	fill: none;
+	stroke: white;
+	stroke-width: 3.5;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+}
+
+svg {
+	margin-right: 10px;
+	width: 20px;
+	height: 21px;
+	vertical-align: middle;
+}
+
+.sidebar {
+	border-top-left-radius: 15px;
+	border-bottom-left-radius: 15px;
+	padding-top: 50px;
+	width: 45%;
+	background-color: grey;
+	min-height: 340px;
+}
+
+.main {
+	display: flex; 
+    justify-content: center;
+    align-items: flex-end;
+	padding-bottom: 25px;
+	border-top-right-radius: 15px;
+	border-bottom-right-radius: 15px;
+	background-color: #fff;
+	width: 55%;
+	height: 396px;
+}
+
+.nav {
+	list-style-type: none;
+}
+
+.nav--manage {
+	align-items: center;
+	a {
+		color: grey;
+		display: inline-block;
+		padding: 0.875em 0;
+		text-decoration: none;
+		transition: color 0.3s ease;
+		
+		&:hover,
+		&:focus {
+			color: black;
+		}
+	}
+	button {
+		color: #8b91b3;
+		display: inline-block;
+		margin-left: 40px;
+		border: none;
+		border-radius: 50px;
+		padding: 0.50em 2.25em;
+		transition: 0.3s ease;
+		background: #ff7739;
+		
+		&:hover,
+		&:focus {
+			background: #b32f00;
+			color: #2d325f;
+		}
+	}
+}
+
+.greetingMessage {
+	margin: 0;
+	text-align: center;
+	font-size:24px;
+	color: white;
 }

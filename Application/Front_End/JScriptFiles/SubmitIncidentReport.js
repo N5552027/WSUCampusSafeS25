@@ -31,7 +31,7 @@ submitReport.addEventListener('click', (event)=>{
             userid: loggedInUserId
         };
         
-        const docRef = addDoc(collection(db, "reports"), reportData)
+        const docRef = addDoc(collection(db, "Reports"), reportData)
         .then(()=>{
             window.location.href='HomePage.html';                
         })

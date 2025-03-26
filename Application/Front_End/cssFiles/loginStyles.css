@@ -9,7 +9,7 @@ body{
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: url(../Assets/loginbg.jpg) no-repeat;
+    background: url(../Assets/loginbg.jpg);
     background-size: cover;
     background-position: center;
 }
@@ -22,7 +22,6 @@ header {
     padding: 15px 100px;
     background: grey;
     border-bottom:4px solid rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(100%);
     display: flex;
     justify-content: space-between;
     align-items: center;

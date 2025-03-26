@@ -1,50 +1,39 @@
 /* Global Modifiers */
 body {
     background-color: #EAE4DB;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
 }
 
 /* Header */
-.header h2{
-   text-align: center;
-}
 
-.header {
+header {
+    position: static;
+    width:fit-content 100;
+    height: 50px;
+    padding: 15px 100px;
+    background: grey;
+    border-bottom:4px solid rgba(255, 255, 255, 0.2);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
 }
 
-.header .navigation {
+.ProjectName  {
+    font-size: 2em;
     color: white;
-    display: flex;
-    gap: 1vw;
-    justify-content: center;
-    align-items: center;
+    user-select: none;
 }
 
-.header .nav-link {
-    background-color: #A60F2D ;
-}
-
-.header {
-    background: #333;
-    color: #fff;
-    padding: 15px;
-    text-align: center;
-    border-radius: 8px;
-    width: 100vw;
-}
-
-.header nav {
-    display: flex;
-    justify-content: space-evenly;
-    color:#f4f4f4;
-}
-
-.header a {
-    text-decoration-style: none;
+.navigation a {
+    position: relative;
+    font-size: 1.1em;
     color: white;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 40px;
 }
 
 /* OVERALL REMINDER */
@@ -53,6 +42,7 @@ body {
     color: white;
     padding: 5px;
     border-radius: 5px;
+    margin:10px;
 }
 
 /*SAFETY INFORMATION*/
@@ -60,6 +50,7 @@ body {
 .ActiveShooterContainer {
     color: #333;
     padding: 3px;
+    margin:10px;
 }
 
 .ActiveShooterContainer h2 {
@@ -76,9 +67,12 @@ body {
 /*Sexual Assault and Rape*/
 
 /* footer */
-.footer-content {
+footer {
+    position: relative;
     background-color: #A60F2D;
     color: white;
     padding: 5px;
     text-align: center;
+    margin: 0px -13px -13px -13px;
+    border-top: 4px solid maroon;
 }
