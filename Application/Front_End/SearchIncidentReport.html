@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Incident Search</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="flex items-center justify-center h-screen bg-gray-100">
+    <div class="w-full max-w-md p-6 bg-white rounded-2xl shadow-lg">
+        <h1 class="text-xl font-bold text-center mb-4">Incident Search</h1>
+        <input id="search" type="text" placeholder="Search incidents..." class="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+        <div class="mt-4 flex justify-center gap-2">
+            <button onclick="sortResults('name')" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">Sort by Name</button>
+            <button onclick="sortResults('time')" class="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600">Sort by Time</button>
+            <button onclick="sortResults('date')" class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600">Sort by Date</button>
+        </div>
+        <ul id="results" class="mt-4 max-h-60 overflow-auto"></ul>
+    </div>
+
+    <script>
+        let incidents = []; // Stores CSV data
+
+        // Load CSV file
+        async function loadCSV() {
+            try {
+                const response = await fetch('/public/incident_report.csv');
+                const data = await response.text();
+                parseCSV(data);
+            } catch (error) {
+                console.error("Error loading CSV:", error);
+            }
+        }
+
+        // Parse CSV into an array of objects
+        function parseCSV(csvText) {
+            const rows = csvText.trim().split("\n");
+            const headers = rows[0].split(","); // First row is the header
+
+            incidents = rows.slice(1).map(row => {
+                const values = row.split(",");
+                return {
+                    name: values[0].trim(),
+                    time: values[1].trim(),
+                    date: values[2].trim(),
+                    description: values.slice(3).join(",").trim() // In case of commas in description
+                };
+            });
+
+            displayResults(incidents);
+        }
+
+        // Display results in the list
+        function displayResults(filteredIncidents) {
+            const resultsList = document.getElementById("results");
+            resultsList.innerHTML = "";
+
+            if (filteredIncidents.length === 0) {
+                resultsList.innerHTML = "<li class='text-gray-500 text-center'>No results found</li>";
+                return;
+            }
+
+            filteredIncidents.forEach(incident => {
+                const li = document.createElement("li");
+                li.classList = "p-2 border-b";
+                li.innerHTML = `<strong>${incident.name}</strong> - ${incident.time} - ${incident.date} <br> ${incident.description}`;
+                resultsList.appendChild(li);
+            });
+        }
+
+        // Search functionality
+        document.getElementById("search").addEventListener("input", function () {
+            const query = this.value.toLowerCase();
+            const filtered = incidents.filter(incident => 
+                incident.name.toLowerCase().includes(query) ||
+                incident.time.toLowerCase().includes(query) ||
+                incident.date.toLowerCase().includes(query) ||
+                incident.description.toLowerCase().includes(query)
+            );
+            displayResults(filtered);
+        });
+
+        // Sort functionality
+        function sortResults(key) {
+            incidents.sort((a, b) => a[key].localeCompare(b[key]));
+            displayResults(incidents);
+        }
+
+        // Load CSV on page load
+        loadCSV();
+    </script>
+</body>
+</html>
