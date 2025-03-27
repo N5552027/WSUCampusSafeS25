@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Incident Report Submission</title>
-    
+
     <link rel="stylesheet" href="./cssFiles/SubmitIncidentReport.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <script type="module" src="./JScriptFiles/SubmitIncidentReport.js"></script>
 </head>
+
 <body>
-    <div class= "header">
+    <div class="header">
         <h2 class="ProjectName">WSU CampusSafe</h2>
         <nav class="navigation">
             <a href="HomePage.html"> Home</a>
@@ -27,13 +29,17 @@
             <label for="title">Title of Incident:</label>
             <input type="text" id="title" required>
 
-            <select id ="type" name="IncidentType" required>
+            <label for="type">Type of Incident:</label>
+            <select id="type" name="IncidentType" required>
                 <option value="1">Sexual Assault/Rape</option>
                 <option value="2">Fire</option>
                 <option value="3">Shooter/Gunshots</option>
                 <option value="4">Medical</option>
                 <option value="5">Assault</option>
                 <option value="6">Harassment</option>
+                <option value="7">Theft</option>
+                <option value="8">Vandalism</option>
+                <option value="9">Other</option>
             </select>
 
             <label for="date">Date:</label>
@@ -44,17 +50,74 @@
 
             <label for="location">Location:</label>
             <select id="location" required>
-                <option value="1">Compton Union Building</option>
-                <option value="2">Wilson-Short Hall</option>
-                <option value="3">Terrel Libraries</option>
-                <option value="4">CUE</option>
+                <optgroup label="Hillside">
+                    <option value="McCroskey Hall">McCroskey Hall</option>
+                    <option value="Stevens Hall">Stevens Hall</option>
+                    <option value="Avery Hall">Avery Hall</option>
+                    <option value="Bryan Hall">Bryan Hall</option>
+                    <option value="Honros Hall">Honors Hall</option>
+                    <option value="Community/Duncan Dunn">Community/Duncan Dunn</option>
+                    <option value="Wilmer Davis">Wilmer Davis</option>
+                    <option value="Morill Hall">Morill Hall</option>
+                    <option value="Jackson Hall">Jackson Hall</option>
+                    <option value="Murrow Hall">Murrow Hall</option>
+                    <option value="Goertzen Hall">Goertzen Hall</option>
+                </optgroup>
+
+                <optgroup label="Southside">
+                    <option value="Stephenson Complex">Stephenson Complex</option>
+                    <option value="Orton Hall">Orton Hall</option>
+                    <option value="Rogers Hall">Rogers Hall</option>
+                    <option value="McEachern Hall">McEachern Complex</option>
+                    <option value="Southside Cafe/Market">Southside Dining/Market</option>
+                    <option value="Gannon-Goldsworthy">Gannon-Goldsworthy Hall</option>
+                    <option value="Cleveland Hall">Cleveland Hall</option>
+                    <option value="SPARK building">SPARK building</option>
+                    <option value="Washington Building">Washington Building</option>
+                    <option value="Waller Hall">Waller Hall</option>
+                    <option value="Olympia Student Housing">Olympia Student Housing</option>
+                    <option value="Stimson Hall">Stimson Hall</option>
+                    <option value="Owen Science Library">Owen Science Library</option>
+                    
+                </optgroup>
+               
+                <optgroup label="Central Campus">
+                
+                </optgroup>
+                
+                <optgroup label="Northside">
+                
+                </optgroup>
+                
+                <optgroup label="Engineering Buildings">
+                    <option value="Sloan Hall">Sloan Hall</option>
+                    <option value="Dana Hall">Dana Hall</option>
+                    <option value="Carpenter Hall">Carpenter Hall</option>
+                    <option value="Engineering Teaching Research Lab">Engineering Teaching Research Lab</option>
+                    <option value="Thermal Fluids Research Building">Thermal Fluids Research Building</option>
+                    <option value="Electrical Mechanical Engineering Building">Electrical Mechanical Engineering Building</option>
+                    <option value="Albrook Hydraulics Laboratory">Albrook Hydraulics Laboratory</option>
+                    <option value="College Avenue Steam Plant">College Avenue Steam Plant</option>
+                    <option value="Engineering Laboratory Building">Engineering Laboratory Building</option>
+                </optgroup>
+                
+                <optgroup label="Agricultural District">
+
+                </optgroup>
+
+                <optgroup label="Vet School">
+                
+                </optgroup>
+
+                <option value="Other">Other</option>
             </select>
 
             <label for="description">Description:</label>
             <textarea id="description" rows="4" required></textarea>
 
-            <button id="sButton" type="button">Submit Report</button>
+            <button id="sButton" type="submit">Submit Report</button>
         </form>
     </div>
 </body>
+
 </html>

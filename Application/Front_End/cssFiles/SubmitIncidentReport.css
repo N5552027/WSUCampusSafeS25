@@ -1,10 +1,11 @@
 body {
     font-family: Arial, sans-serif;
     height: 100vh;
-    background-color: #f4f4f4;
     align-items: center;
     display: flex;
     flex-direction: column;
+
+    background: url(../Assets/WSUPD-Cars.jpg) no-repeat center center/cover;
 }
 
 .header {
