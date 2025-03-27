@@ -1,0 +1,67 @@
+body {
+    min-height: 100vh;
+    background: url(../Assets/WSUPullmanFBPracticeField.jpg) no-repeat center center fixed;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    background-color: gray;
+    padding: 20px;
+}
+
+.Contact-Us {
+    background-color:black;
+    color: antiquewhite;
+    margin: 1vw;
+    padding: 1vw;
+    flex: 1;
+}
+
+.ProgrammingContacts {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    flex: 1;
+}
+
+/* Shared styles for the grid containers */
+.ProgrammingContacts .grid-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column
+}
+
+.ProgrammingContacts .grid-container .Contact-Container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Three equal columns */
+    padding: 1vw;
+    margin: 1vw;
+    font-size: 1.25em;
+    height: 75%;
+    width: 75%;
+    column-gap: 1vw;
+    width: 80%
+}
+
+/* Shared styles for the grid items */
+.ProgrammingContacts .grid-container .Contact-Container .grid-item {
+    background: black;
+    border-radius: 10%;;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%; /* Ensures grid items stretch to fit container's height */
+}
+
+/* Shared styles for images inside grid items */
+.ProgrammingContacts .grid-container .Contact-Container .grid-item img {
+    width: 75%;
+    height: auto;
+    max-width: 100%;
+    border-radius: 25%;
+}
