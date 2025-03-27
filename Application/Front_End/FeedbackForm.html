@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script type="module" src="./JScriptFiles/FeedbackForm.js"></script>
+    <link rel="stylesheet" href="./cssFiles/FeedbackForm.css">
     <title>Document</title>
 </head>
 <body>
-    <div class= "header">
+    <header>
         <h2 class="ProjectName">WSU CampusSafe</h2>
         <nav class="navigation">
             <a href="HomePage.html"> Home</a>
@@ -15,7 +16,7 @@
             <a href="Contact.html"> Contact Us</a>
             <a href="SubmitIncidentReport.html">Submit Incident Report</a>
         </nav>
-    </div>
+    </header>
 
     <div class="FeedbackForm">
         <h2>Feedback Form</h2>
@@ -29,8 +30,9 @@
             <label for="feedback">Feedback:</label>
             <textarea id="feedback" rows="4" required></textarea>
 
-            <button id="fButton" type="button">Submit Feedback</button>
+            <button id="fButton" type="submit">Submit Feedback</button>
         </form>
-    
+    </div>
+
 </body>
 </html>
