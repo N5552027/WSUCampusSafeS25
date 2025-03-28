@@ -1,0 +1,87 @@
+body {
+    min-height: 100vh;
+    background: url(../Assets/WSUPullmanFBPracticeField.jpg) no-repeat center center fixed;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 15px;
+    text-align: center;
+    border-radius: 8px;
+    width: 100vw;
+}
+
+header nav {
+    display: flex;
+    justify-content: space-evenly;
+    color:#f4f4f4;
+}
+
+header a {
+    text-decoration-style: none;
+    color: white;
+}
+.Contact-Us {
+    position: relative;
+    left: 7%;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    color: antiquewhite;
+    margin: 1vw;
+    padding: 1vw;
+    flex: 1;
+    width: 80%;
+}
+
+.Contact-Us h1 {
+    text-align: center;
+    font-size: 2em;
+}
+
+.Contact-Us p {
+    text-align: center;
+    font-size: 1.5em;
+}
+
+/* OVERALL CONTACTS CONTAINER */
+.grid-container {
+    position:relative;
+    left: 7%;
+}
+
+/* Shared styles for the grid containers */
+.grid-container .Contact-Container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Three equal columns */
+    padding: 1vw;
+    margin: 1vw;
+    font-size: 1.25em;
+    height: 75%;
+    width: 75%;
+    column-gap: 1vw;
+    width: 80%
+}
+
+/* Shared styles for the grid items */
+.grid-container .Contact-Container .grid-item {
+    background: black;
+    border-radius: 10%;;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%; /* Ensures grid items stretch to fit container's height */
+}
+
+/* Shared styles for images inside grid items */
+.grid-container .Contact-Container .grid-item img {
+    width: 75%;
+    height: auto;
+    max-width: 100%;
+    border-radius: 25%;
+}
