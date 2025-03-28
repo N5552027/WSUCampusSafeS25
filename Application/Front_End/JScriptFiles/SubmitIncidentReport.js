@@ -43,3 +43,66 @@ submitReport.addEventListener('click', (event)=>{
         console.log("Error: User not found");
     }
 })
+
+
+const regions = {
+    "Hillside": [
+        "Abelson Hall", "Avery Hall", "Bryan Hall", "Community/Duncan Dunn", "Eastlick Hall",
+        "Goertzen Hall", "Heald Hall", "Honors Residence Hall", "Jackson Hall", "McCroskey Residence Hall",
+        "Morill Hall", "Murrow Hall", "Stevens Hall", "Wilmer Davis"
+    ],
+    "Southside": [
+        "Cleveland Hall", "Fulmer Hall", "Gannon-Goldsworthy Residece Hall", "McEachern Residence Hall",
+        "Nieill Hall", "Olympia Student Housing", "Orton Hall", "Owen Science Library", "Rogers Hall",
+        "Shock Physics Building", "Southside Cafe/Market", "SPARK building", "Stephenson Residence Complex",
+        "Stimson Hall", "Troy Hall", "Waller Hall", "Washington Building", "Webster Hall"
+    ],
+    "Central_Campus": [
+        "Bohler Gym", "Center for Undergraduate Education", "Chinook Student Center", "Compton Union Building",
+        "Fine Arts Building and Musuem", "French Administration Building", "Holland and Terrel Libraries",
+        "Hollingberry Fieldhouse", "Information Technology building", "Kimbrough Music Building", "Martin Stadium",
+        "Mooberry Track", "Physical Education Building", "Smith Gym", "Todd Hall", "Van Doren Hall"
+    ],
+    "Northside": [
+        "Beasly Colliseum", "Einsteins Bagels and Northside Market", "Global Scholars Residence Hall",
+        "Northside Cafe", "Northside Residence Hall", "Regents Residence Hall", "Scott-Coman Residence Hall",
+        "Streit Perham Residence Hall"
+    ],
+    "Engineering_Buildings": [
+        "Albrook Hydraulics Laboratory", "Carpenter Hall", "College Avenue Steam Plant", "Daggy Hall", "Dana Hall",
+        "Electrical Mechanical Engineering Building", "Engineering Laboratory Building", "Engineering Teaching Research Lab",
+        "Sloan Hall", "Thermal Fluids Research Building",
+    ],
+    "Other": [
+        "Other"
+    ]
+};
+
+// Get the select elements
+const locationSelect = document.getElementById("Building");
+const campusSelection = document.getElementById("Campus_Region");
+
+// Function to update the location options based on selected region
+function updateLocationOptions(region) {
+    // Clear current options
+    locationSelect.innerHTML = "";
+
+    // Add the new options based on the selected region
+    const buildings = regions[region];
+
+    buildings.forEach(building => {
+        const option = document.createElement("option");
+        option.value = building;
+        option.textContent = building;
+        locationSelect.appendChild(option);
+    });
+}
+
+// Listen for the change event on the campus selection dropdown
+campusSelection.addEventListener("change", function() {
+    const selectedRegion = campusSelection.value;
+    updateLocationOptions(selectedRegion);  // Update location options based on the selected campus
+});
+
+// Initially load the location options for the first campus selection
+updateLocationOptions(campusSelection.value);
