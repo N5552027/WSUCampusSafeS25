@@ -6,34 +6,55 @@ body {
 }
 
 header {
-    background-color: gray;
-    padding: 20px;
+    background-color: #333;
+    color: #fff;
+    padding: 15px;
+    text-align: center;
+    border-radius: 8px;
+    width: 100vw;
+}
+
+header nav {
+    display: flex;
+    justify-content: space-evenly;
+    color:#f4f4f4;
+}
+
+header a {
+    text-decoration-style: none;
+    color: white;
 }
 
 .Contact-Us {
-    background-color:black;
+    position: relative;
+    left: 7%;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
     color: antiquewhite;
     margin: 1vw;
     padding: 1vw;
     flex: 1;
+    width: 80%;
 }
 
-.ProgrammingContacts {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    flex: 1;
+.Contact-Us h1 {
+    text-align: center;
+    font-size: 2em;
+}
+
+.Contact-Us p {
+    text-align: center;
+    font-size: 1.5em;
+}
+
+/* OVERALL CONTACTS CONTAINER */
+.grid-container {
+    position:relative;
+    left: 7%;
 }
 
 /* Shared styles for the grid containers */
-.ProgrammingContacts .grid-container {
-    display: flex;
-    justify-content: center;
-    flex-direction: column
-}
-
-.ProgrammingContacts .grid-container .Contact-Container {
+.grid-container .Contact-Container {
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* Three equal columns */
     padding: 1vw;
@@ -46,11 +67,11 @@ header {
 }
 
 /* Shared styles for the grid items */
-.ProgrammingContacts .grid-container .Contact-Container .grid-item {
+.grid-container .Contact-Container .grid-item {
     background: black;
     border-radius: 10%;;
     color: white;
-    padding: 20px;
+    padding: 10px;
     text-align: center;
     display: flex;
     justify-content: center;
@@ -59,7 +80,7 @@ header {
 }
 
 /* Shared styles for images inside grid items */
-.ProgrammingContacts .grid-container .Contact-Container .grid-item img {
+.grid-container .Contact-Container .grid-item img {
     width: 75%;
     height: auto;
     max-width: 100%;
