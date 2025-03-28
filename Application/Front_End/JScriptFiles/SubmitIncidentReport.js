@@ -26,7 +26,8 @@ submitReport.addEventListener('click', (event)=>{
             type: document.getElementById('type').value,
             date: document.getElementById('date').value,
             time: document.getElementById('time').value,
-            location: document.getElementById('location').value,
+            Campus_Region: document.getElementById('Campus_Region').value,
+            Building: document.getElementById('Building').value,
             description: document.getElementById('description').value,
             userid: loggedInUserId
         };
