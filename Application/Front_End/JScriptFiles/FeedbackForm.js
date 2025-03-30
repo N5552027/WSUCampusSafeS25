@@ -1,6 +1,6 @@
 import {initializeApp} from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
 import {getFirestore, addDoc, collection} from "https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js"
-import {getAuth} from "https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js"
+import {getAuth, onAuthStateChanged} from "https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js"
 
 const firebaseConfig = {
     apiKey: "AIzaSyDx5UmD-X7Cv3BN0bRDvFKV2tH7oh6hFYM",
@@ -15,6 +15,31 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 const db = getFirestore();
+
+nAuthStateChanged(auth, (user) => {
+    const loggedInUserId = localStorage.getItem('loggedInUserId');
+    if (loggedInUserId) {
+        const docRef = doc(db, "Users", loggedInUserId);
+        getDoc(docRef)
+            .then((docSnap) => {
+                if (docSnap.exists()) {
+                    const userData = docSnap.data();
+                    document.getElementById('userFName').innerText = userData.fName;
+                    document.getElementById('userEmail').innerText = userData.email;
+                }
+                else {
+                    console.log("Error: Cannot find existing user document by user ID");
+                }
+            })
+            .catch((error) => {
+                console.log("Error: Cannot fetch document,", error);
+            })
+    }
+    else {
+        console.log("Error: User ID not found");
+        window.location.href = 'login.html';
+    }
+})
 
 const submitFeedback = document.getElementById('fButton')
 submitFeedback.addEventListener('click', (event)=>{

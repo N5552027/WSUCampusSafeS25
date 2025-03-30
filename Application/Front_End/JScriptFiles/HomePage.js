@@ -38,6 +38,7 @@ onAuthStateChanged(auth, (user) => {
     }
     else {
         console.log("Error: User ID not found");
+        window.location.href = 'login.html';
     }
 })
 
