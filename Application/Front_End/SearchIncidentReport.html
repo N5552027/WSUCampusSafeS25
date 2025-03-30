@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Incident Search</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script type="module" src="./JScriptFiles/SearchIncidentReport.js"></script>
 </head>
 <body class="flex items-center justify-center h-screen bg-gray-100">
     <div class="w-full max-w-md p-6 bg-white rounded-2xl shadow-lg">
@@ -30,99 +31,5 @@
         <!-- Incident list -->
         <ul id="results" class="mt-4 max-h-60 overflow-auto border rounded-lg p-2"></ul>
     </div>
-
-    <script>
-        let incidents = [];
-        let currentSortMode = 'title';
-
-        async function loadCSV() {
-            try {
-                const response = await fetch('/incident_management/public/incident_report.csv');
-                const data = await response.text();
-                parseCSV(data);
-            } catch (error) {
-                console.error("Error loading CSV:", error);
-            }
-        }
-
-        function parseCSV(csvText) {
-            const rows = csvText.trim().split("\n");
-            const headers = rows[0].split(",");
-
-            incidents = rows.slice(1).map(row => {
-                const values = row.split(",");
-                return {
-                    title: values[0].trim(),
-                    date: values[1].trim(),
-                    time: values[2].trim(),
-                    description: values.slice(3).join(",").trim()
-                };
-            });
-
-            // Initially sort by name
-            incidents.sort((a, b) => a.title.toLowerCase().localeCompare(b.title.toLowerCase()));
-            filterAndDisplay();
-        }
-
-        function displayResults(filteredIncidents) {
-            const resultsList = document.getElementById("results");
-            resultsList.innerHTML = "";
-
-            if (filteredIncidents.length === 0) {
-                resultsList.innerHTML = "<li class='text-gray-500 text-center'>No results found</li>";
-                return;
-            }
-
-            filteredIncidents.forEach(incident => {
-                const li = document.createElement("li");
-                li.classList = "p-2 border-b";
-                li.innerHTML = `<strong>${incident.title}</strong> - ${incident.date} ${incident.time} <br> ${incident.description}`;
-                resultsList.appendChild(li);
-            });
-        }
-
-        document.getElementById("search").addEventListener("input", function () {
-            filterAndDisplay();
-        });
-
-        function filterAndDisplay() {
-            const query = document.getElementById("search").value.toLowerCase();
-            
-            // Only filter based on title and sort alphabetically
-            let filtered = incidents.filter(incident => 
-                incident.title.toLowerCase().startsWith(query)
-            );
-
-            sortResults(filtered, currentSortMode);
-            displayResults(filtered);
-        }
-
-        function setSortMode(mode) {
-            currentSortMode = mode;
-            filterAndDisplay();
-        }
-
-        function sortResults(data, key) {
-            if (key === "title") {
-                data.sort((a, b) => a.title.toLowerCase().localeCompare(b.title.toLowerCase()));
-            } else if (key === "date") {
-                data.sort((a, b) => parseDate(a.date) - parseDate(b.date)); // Earliest date first
-            } else if (key === "time") {
-                data.sort((a, b) => parseTime(a.time) - parseTime(b.time)); // Earliest time first
-            }
-        }
-
-        function parseDate(dateStr) {
-            const [year, month, day] = dateStr.split("-").map(Number);
-            return new Date(year, month - 1, day);
-        }
-
-        function parseTime(timeStr) {
-            const [hours, minutes] = timeStr.split(":").map(Number);
-            return hours * 60 + minutes;  // Convert to minutes to make comparison easier
-        }
-
-        loadCSV();
-    </script>
 </body>
 </html>

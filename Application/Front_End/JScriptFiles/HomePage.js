@@ -45,6 +45,7 @@ onAuthStateChanged(auth, (user) => {
 const logoutButton = document.getElementById('logout');
 logoutButton.addEventListener('click', () => {
     localStorage.removeItem('loggedInUserId');
+    localStorage.removeItem('csvData');
     signOut(auth)
         .then(() => {
             window.location.href = 'login.html';
