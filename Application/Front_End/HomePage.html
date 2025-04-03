@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Homepage</title>
-    <link rel="stylesheet" href="./cssFiles/HomePageStyles.css">
     <script type="module" src="./JScriptFiles/HomePage.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="module" src="./JScriptFiles/SearchIncidentReport.js"></script>
 </head>
 <body>
     <header>
@@ -56,23 +57,47 @@
     <div class="container">
         <div class="sidebar">
             <p class="greetingMessage">Hello, <span id="userFName" style="text-transform: capitalize;"></span></p>
-            <p class="greetingMessage">Email: <span id="userEmail"></span></p>
             <nav class="sidebarNavigation">
                 <ul>
-                    <li><a href="#"><svg xmlns="http://www.w3.org/2000/svg"><use xlink:href="#icon-dashboard" /></svg> Dashboard</a></li>
-                    <li><a href="#"><svg xmlns="http://www.w3.org/2000/svg"><use xlink:href="#icon-numbers" /></svg> My Numbers</a></li>
-                    <li><a href="#"><svg xmlns="http://www.w3.org/2000/svg"><use xlink:href="#icon-reporting" /></svg> Reports</a></li>
-                    <li><a href="#"><svg xmlns="http://www.w3.org/2000/svg"><use xlink:href="#icon-admin" /></svg> Admin</a></li>
+                    <li><a href="#"><svg xmlns="http://www.w3.org/2000/svg"><use xlink:href="#icon-dashboard" /></svg> Reports</a></li>
+                    <li><a href="#"><svg xmlns="http://www.w3.org/2000/svg"><use xlink:href="#icon-reporting" /></svg> My Reports</a></li>
+                    <li><a href="#"><svg xmlns="http://www.w3.org/2000/svg"><use xlink:href="#icon-admin" /></svg> Settings</a></li>
+                    <li><a href="#"><svg xmlns="http://www.w3.org/2000/svg"><use xlink:href="#icon-numbers" /></svg> Contact Us</a></li>
                 </ul>
             </nav>
-        </div>
-        <div class="main">
             <ul class="nav nav--manage">
                 <a href="SubmitIncidentReport.html"> Submit Incident Report </a>
                 <button class="logoutButton" id="logout"> <a href="#">Logout</a></button>
-            </ul>            
+            </ul>   
         </div>
-    </div>
+        <div class="main">
+            <div class="incidentSearch">
+                <h1 class="incidentSearchTitle">Incident Search</h1>        
+                <!-- Search bar -->
+                <input class="incidentSearchBar" id="search" type="text" placeholder="Search incidents..."></input>        
+                <!-- Sorting buttons -->
+                <div class="sortButtons">
+                    <button onclick="setSortMode('title')"
+                        id="titleButton"
+                        class="sortByName">                       
+                        Sort by Name
+                    </button>
+                    <button onclick="setSortMode('date')"
+                        id="dateButton"
+                        class="sortByDate">
+                        Sort by Date
+                    </button>
+                    <button onclick="setSortMode('time')"
+                        id="timeButton" 
+                        class="sortByTime">
+                        Sort by Time
+                    </button>
+                </div>        
+                <!-- Incident list -->
+                <ul id="results" class="incidentList"></ul>
+            </div>
+        </div>
+    </div>    
 </body>
-
+<link rel="stylesheet" href="./cssFiles/HomePageStyles.css">
 </html>

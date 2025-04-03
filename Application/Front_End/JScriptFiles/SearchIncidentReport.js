@@ -17,22 +17,6 @@ const auth = getAuth();
 const db = getFirestore(app);
 var data = [['Title','Date','Time','Description']];  
 
-async function getReports() {
-    try {
-        const querySnapshot = await getDocs(collection(db, "Reports"));
-        querySnapshot.forEach((doc) => {
-            console.log(doc.id, " => ", doc.data());
-            const currIncidentData = doc.data();
-            const tempArr = [currIncidentData.title, currIncidentData.date, currIncidentData.time, currIncidentData.description];
-            data.push(tempArr);
-            const csvContent = data.map(row => row.join(',')).join('\n');        
-            localStorage.setItem('csvData', csvContent);
-        });
-    } catch (error) {
-        console.error("Error: Reports collection not found", error);
-    }
-}
-
 onAuthStateChanged(auth, (user) => {
     const loggedInUserId = localStorage.getItem('loggedInUserId');
     if (loggedInUserId) {
@@ -60,6 +44,22 @@ onAuthStateChanged(auth, (user) => {
 
 let incidents = [];
 let currentSortMode = 'title';
+
+async function getReports() {
+    try {
+        const querySnapshot = await getDocs(collection(db, "Reports"));
+        querySnapshot.forEach((doc) => {
+            console.log(doc.id, " => ", doc.data());
+            const currIncidentData = doc.data();
+            const tempArr = [currIncidentData.title, currIncidentData.date, currIncidentData.time, currIncidentData.description];
+            data.push(tempArr);
+            const csvContent = data.map(row => row.join(',')).join('\n');        
+            localStorage.setItem('csvData', csvContent);
+        });
+    } catch (error) {
+        console.error("Error: Reports collection not found", error);
+    }
+}
 
 async function loadCSV() {
     try {
