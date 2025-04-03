@@ -1,5 +1,5 @@
 # Sprint 2 Report
-Video Link:
+Video Link: https://youtu.be/MOeLYz4p2Co 
 
 
 
@@ -38,26 +38,28 @@ A sprint one ordeal that we still had not finished due to figuring out how to st
 ## Code Files for Review
 Please review the following code files, which were actively developed during this
 sprint, for quality:
-* Contact.html
-* Contact.css
+* [Contact.html](https://github.com/N5552027/WSUCampusSafeS25/blob/main/Application/Front_End/Contact.html)
+* [Contact.css](https://github.com/N5552027/WSUCampusSafeS25/blob/main/Application/Front_End/cssFiles/Contact.css)
 
-* PublicSafetyInformation.html
-* PublicSafetyInformation.css
+* [PublicSafetyInformation.html](https://github.com/N5552027/WSUCampusSafeS25/blob/main/Application/Front_End/PublicSafetyInformation.html)
 
-* SearchIncidentReport.html
-* SearchIncidentReport.css
-* SearchIncidentReport.js
+* [SearchIncidentReport.html](https://github.com/N5552027/WSUCampusSafeS25/blob/main/Application/Front_End/SearchIncidentReport.html)
+* [SearchIncidentReport.js](https://github.com/N5552027/WSUCampusSafeS25/blob/main/Application/Front_End/JScriptFiles/SearchIncidentReport.js)
 
-* PublicContact.html
-* PublicContact.css
+* [PublicContact.html](https://github.com/N5552027/WSUCampusSafeS25/blob/main/Application/Front_End/PublicContact.html)
+* [PublicContact.css](https://github.com/N5552027/WSUCampusSafeS25/blob/main/Application/Front_End/cssFiles/PublicContacts.css)
 
-* FeedbackForm.html
-* FeedbackForm.css
-* FeedbackForm.js
+* [FeedbackForm.html](https://github.com/N5552027/WSUCampusSafeS25/blob/main/Application/Front_End/FeedbackForm.html)
+* [FeedbackForm.css](https://github.com/N5552027/WSUCampusSafeS25/blob/main/Application/Front_End/cssFiles/FeedbackForm.css)
+* [FeedbackForm.js](https://github.com/N5552027/WSUCampusSafeS25/blob/main/Application/Front_End/JScriptFiles/FeedbackForm.js)
 
-* Homepage.html
-* Homepage.css
+* [Homepage.html](https://github.com/N5552027/WSUCampusSafeS25/blob/main/Application/Front_End/HomePage.html)
+* [Homepage.css](https://github.com/N5552027/WSUCampusSafeS25/blob/main/Application/Front_End/cssFiles/HomePageStyles.css)
+* [Homepage.js](https://github.com/N5552027/WSUCampusSafeS25/blob/main/Application/Front_End/JScriptFiles/HomePage.js)
 
+* [SubmitIncidentReport.html](https://github.com/N5552027/WSUCampusSafeS25/blob/main/Application/Front_End/SubmitIncidentReport.html)
+* [SubmitIncidentReport.css](https://github.com/N5552027/WSUCampusSafeS25/blob/main/Application/Front_End/cssFiles/SubmitIncidentReport.css)
+* [SubmitIncidentReport.js](https://github.com/N5552027/WSUCampusSafeS25/blob/main/Application/Front_End/JScriptFiles/SubmitIncidentReport.js)
 
 ## Retrospective Summary
 Here's what went well:
