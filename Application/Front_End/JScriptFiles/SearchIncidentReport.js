@@ -40,6 +40,20 @@ onAuthStateChanged(auth, (user) => {
     }
 })
 
+// Sort Buttons
+const titleButton = document.getElementById('titleButton');
+const dateButton = document.getElementById('dateButton');
+const timeButton = document.getElementById('timeButton');
+titleButton.addEventListener('click', (event)=>{
+    setSortMode('title')
+})
+dateButton.addEventListener('click', (event)=>{
+    setSortMode('date')
+})
+timeButton.addEventListener('click', (event)=>{
+    setSortMode('time')
+})
+
 // Search 
 
 let incidents = [];

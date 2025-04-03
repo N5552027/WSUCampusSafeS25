@@ -55,6 +55,7 @@ logoutButton.addEventListener('click', () => {
         })
 })
 
+
 // Loading Page
 window.onload = function() {
     if(!window.location.hash) {
