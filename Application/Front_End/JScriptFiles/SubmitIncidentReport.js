@@ -88,9 +88,10 @@ newNotification.addEventListener('click', (event)=>{
         /* PARSE SPECIFIC FIELDS FOR NOTIFICATION */
 
         /* SEND OUT NOTIFICATION */
+
     }
     else{
-        console.log("Error: User not found");
+        console.log("Error: Cannot send out system notification due to user not being registerd.");
     }
 })
 
