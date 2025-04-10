@@ -70,31 +70,6 @@ submitReport.addEventListener('click', (event)=>{
     }
 })
 
-const newNotification = dockument.getElementById('sButton')
-newNotification.addEventListener('click', (event)=>{
-    event.preventDefault();
-    const loggedInUserId = localStorage.getItem('loggedInUserId');
-    if(loggedInUserId){
-        const NOTIFICATION = {
-            title: document.getElementById('title').value,
-            type: document.getElementById('type').value,
-            date: document.getElementById('date').value,
-            time: document.getElementById('time').value,
-            Campus_Region: document.getElementById('Campus_Region').value,
-            Building: document.getElementById('Building').value,
-            description: document.getElementById('description').value,
-        }
-
-        /* PARSE SPECIFIC FIELDS FOR NOTIFICATION */
-
-        /* SEND OUT NOTIFICATION */
-
-    }
-    else{
-        console.log("Error: Cannot send out system notification due to user not being registerd.");
-    }
-})
-
 
 const regions = {
     "Hillside": [

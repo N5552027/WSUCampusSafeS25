@@ -21,7 +21,7 @@
         </nav>
     </header>
     
-    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <svg xmlns="http://www.w3.org/2000/svg">
         <symbol id="icon-dashboard" viewBox="0 0 103.5 107.5">
             <path class="icon" d="M1.8 1.8h20v20h-20v-20zm80 0h20v20h-20v-20zm-40 0h20v20h-20v-20zm0 42h20v20h-20v-20zm40 0h20v20h-20v-20zm-80 0h20v20h-20v-20zm0 42h20v20h-20v-20zm40 0h20v20h-20v-20zm40 0h20v20h-20v-20z"/>
         </symbol>
@@ -61,7 +61,7 @@
                 <ul>
                     <li><a href="#"><svg xmlns="http://www.w3.org/2000/svg"><use xlink:href="#icon-dashboard" /></svg> Reports</a></li>
                     <li><a href="#"><svg xmlns="http://www.w3.org/2000/svg"><use xlink:href="#icon-reporting" /></svg> My Reports</a></li>
-                    <li><a href="#"><svg xmlns="http://www.w3.org/2000/svg"><use xlink:href="#icon-admin" /></svg> Settings</a></li>
+                    <li><a href="#"><svg xmlns="http://www.w3.org/2000/svg"><use xlink:href="#icon-admin" /></svg> User Information</a></li>
                     <li><a href="#"><svg xmlns="http://www.w3.org/2000/svg"><use xlink:href="#icon-numbers" /></svg> Contact Us</a></li>
                 </ul>
             </nav>
@@ -71,7 +71,7 @@
             </ul>   
         </div>
         <div class="main">
-            <div class="incidentSearch">
+            <div class="incidentSearch" style="display:all;">
                 <h1 class="incidentSearchTitle">Incident Search</h1>        
                 <!-- Search bar -->
                 <input class="incidentSearchBar" id="search" type="text" placeholder="Search incidents..."></input>        
@@ -95,6 +95,12 @@
                 </div>        
                 <!-- Incident list -->
                 <ul id="results" class="incidentList"></ul>
+            </div>
+            <div class="userSetting" style="display:none;">
+                <h1 class="userSettingTitle">User Information</h1>
+                <p class="userFName">User's First Name: <span id="userFName" style="text-transform: capitalize;"></span></p>
+                <p class="userEmail">User's Email Address: <span id="userEmail"></span></p>
+                <p class="userID">User's UID: <span id="userUID"></span></p>
             </div>
         </div>
     </div>    

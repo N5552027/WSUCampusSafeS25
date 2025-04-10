@@ -27,6 +27,7 @@ onAuthStateChanged(auth, (user) => {
                     const userData = docSnap.data();
                     document.getElementById('userFName').innerText = userData.fName;
                     document.getElementById('userEmail').innerText = userData.email;
+                    document.getElementById('userUID').innerText = userData.loggedInUserId;
                 }
                 else {
                     console.log("Error: Cannot find existing user document by user ID");
@@ -54,7 +55,6 @@ logoutButton.addEventListener('click', () => {
             console.error('Error: Cannot sign out');
         })
 })
-
 
 // Loading Page
 window.onload = function() {
