@@ -41,9 +41,9 @@ onAuthStateChanged(auth, (user) => {
 })
 
 // Sort Buttons
-const titleButton = document.getElementById('titleButton');
-const dateButton = document.getElementById('dateButton');
-const timeButton = document.getElementById('timeButton');
+const titleButton = document.getElementById('myTitleButton');
+const dateButton = document.getElementById('myDateButton');
+const timeButton = document.getElementById('myTimeButton');
 titleButton.addEventListener('click', (event)=>{
     setSortMode('title')
 })
@@ -61,15 +61,18 @@ let currentSortMode = 'title';
 
 async function getReports() {
     try {
+        const loggedInUserId = localStorage.getItem('loggedInUserId');
         const querySnapshot = await getDocs(collection(db, "Reports"));
-        console.log("Loading All Reports");
+        console.log("Loading My Reports");
         querySnapshot.forEach((doc) => {
-            console.log(doc.id, " => ", doc.data());
             const currIncidentData = doc.data();
-            const tempArr = [currIncidentData.title, currIncidentData.date, currIncidentData.time, currIncidentData.description];
-            data.push(tempArr);
-            const csvContent = data.map(row => row.join(',')).join('\n');        
-            localStorage.setItem('csvData', csvContent);
+            if (currIncidentData.userid == loggedInUserId) {
+                console.log(doc.id, " => ", doc.data());
+                const tempArr = [currIncidentData.title, currIncidentData.date, currIncidentData.time, currIncidentData.description];
+                data.push(tempArr);
+                const csvContent = data.map(row => row.join(',')).join('\n');
+                localStorage.setItem('myCsvData', csvContent);
+            }
         });
     } catch (error) {
         console.error("Error: Reports collection not found", error);
@@ -78,7 +81,7 @@ async function getReports() {
 
 async function loadCSV() {
     try {
-        parseCSV(localStorage.getItem('csvData'));
+        parseCSV(localStorage.getItem('myCsvData'));
     } catch (error) {
         console.error("Error loading CSV:", error);
     }
@@ -104,7 +107,7 @@ function parseCSV(csvText) {
 }
 
 function displayResults(filteredIncidents) {
-    const resultsList = document.getElementById("results");
+    const resultsList = document.getElementById("myResults");
     resultsList.innerHTML = "";
 
     if (filteredIncidents.length === 0) {
@@ -120,12 +123,12 @@ function displayResults(filteredIncidents) {
     });
 }
 
-document.getElementById("search").addEventListener("input", function () {
+document.getElementById("mySearch").addEventListener("input", function () {
     filterAndDisplay();
 });
 
 function filterAndDisplay() {
-    const query = document.getElementById("search").value.toLowerCase();
+    const query = document.getElementById("mySearch").value.toLowerCase();
 
     // Only filter based on title and sort alphabetically
     let filtered = incidents.filter(incident =>

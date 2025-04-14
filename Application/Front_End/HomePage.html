@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homepage</title>
-    <script type="module" src="./JScriptFiles/HomePage.js"></script>
+    <title>Homepage | WSU Campus Safe</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script type="module" src="./JScriptFiles/SearchIncidentReport.js"></script>
+    <script type="module" src="./JScriptFiles/SearchMyIncidentReport.js"></script>
+    <script type="module" src="./JScriptFiles/HomePage.js"></script>
 </head>
 <body>
     <header>
@@ -15,7 +16,7 @@
             <a href="HomePage.html"> Home</a>
             <a href="SafetyInformation.html"> Safety Information</a>
             <a href="SubmitIncidentReport.html">Submit Incident Report</a>
-            <!-- <a href="SearchIncidentReport.html">Search Incident Report</a> -->
+            <a href="SearchIncidentReport.html">Search Incident Report</a>
             <a href="FeedbackForm.html">Feedback Form</a>
             <a href="Contact.html"> Contact Us</a>
         </nav>
@@ -59,10 +60,10 @@
             <p class="greetingMessage">Hello, <span id="userFName" style="text-transform: capitalize;"></span></p>
             <nav class="sidebarNavigation">
                 <ul>
-                    <li><a href="#"><svg xmlns="http://www.w3.org/2000/svg"><use xlink:href="#icon-dashboard" /></svg> Reports</a></li>
-                    <li><a href="#"><svg xmlns="http://www.w3.org/2000/svg"><use xlink:href="#icon-reporting" /></svg> My Reports</a></li>
-                    <li><a href="#"><svg xmlns="http://www.w3.org/2000/svg"><use xlink:href="#icon-admin" /></svg> User Information</a></li>
-                    <li><a href="#"><svg xmlns="http://www.w3.org/2000/svg"><use xlink:href="#icon-numbers" /></svg> Contact Us</a></li>
+                    <li id="incidentsButton"><a><svg xmlns="http://www.w3.org/2000/svg"><use xlink:href="#icon-dashboard" /></svg> Incidents</a></li>
+                    <li id="myIncidentsButton"><a><svg xmlns="http://www.w3.org/2000/svg"><use xlink:href="#icon-reporting" /></svg> My Incidents</a></li>
+                    <li id="userInformationButton"><a><svg xmlns="http://www.w3.org/2000/svg"><use xlink:href="#icon-admin" /></svg> User Information</a></li>
+                    <li id="contactUsButton"><a><svg xmlns="http://www.w3.org/2000/svg"><use xlink:href="#icon-numbers" /></svg> Contact Us</a></li>
                 </ul>
             </nav>
             <ul class="nav nav--manage">
@@ -71,10 +72,11 @@
             </ul>   
         </div>
         <div class="main">
-            <div class="incidentSearch" style="display:all;">
+
+            <div class="incidentSearch">
                 <h1 class="incidentSearchTitle">Incident Search</h1>        
                 <!-- Search bar -->
-                <input class="incidentSearchBar" id="search" type="text" placeholder="Search incidents..."></input>        
+                <input class="incidentSearchBar" id="mySearch" type="text" placeholder="Search incidents..."></input>        
                 <!-- Sorting buttons -->
                 <div class="sortButtons">
                     <button id="titleButton"
@@ -96,14 +98,54 @@
                 <!-- Incident list -->
                 <ul id="results" class="incidentList"></ul>
             </div>
-            <div class="userSetting" style="display:none;">
+
+            <div class="myIncidentSearch">
+                <h1 class="myIncidentSearchTitle">My Incidents</h1>        
+                <input class="myIncidentSearchBar" id="search" type="text" placeholder="Search incidents..."></input>        
+                <div class="mySortButtons">
+                    <button
+                        id="myTitleButton"
+                        class="mySortByName">                       
+                        Sort by Name
+                    </button>
+                    <button
+                        id="myDateButton"
+                        class="mySortByDate">
+                        Sort by Date
+                    </button>
+                    <button
+                        id="myTimeButton" 
+                        class="mySortByTime">
+                        Sort by Time
+                    </button>
+                </div>        
+                <ul id="myResults" class="myIncidentList"></ul>
+            </div>
+
+            <div class="userSetting">
                 <h1 class="userSettingTitle">User Information</h1>
-                <p class="userFName">User's First Name: <span id="userFName" style="text-transform: capitalize;"></span></p>
+                <p class="userFirstName">User's First Name: <span id="userInfoFName" style="text-transform: capitalize;"></span></p>
                 <p class="userEmail">User's Email Address: <span id="userEmail"></span></p>
                 <p class="userID">User's UID: <span id="userUID"></span></p>
+                <p class="verifyStatus">Verification Status: <span id="userVStatus"></span></p>
+                <button class="verifyEmail" id="verifyEmailButton">Send Verification Email</button>
+            </div>
+
+            <div class="contactUs">
+                <div class="contactUsText">
+                    <h1 class="contactUsTitle">Contact Us!</h1>
+                    <p>Front End Developer: Noah Manuel</p>
+                    <p>Email: <a href="mailto:noahnicholas.manuel@wsu.edu">noahnicholas.manuel@wsu.edu</a></p>
+                    <p>Backend Developer & Database Support: Alan Qiu</p>
+                    <p>Email: <a href="mailto:alan.qiu@wsu.edu">alan.qiu@wsu.edu</a></p>
+                    <p>Frontend Developer: Finley Blaylock</p>
+                    <p>Email: <a href="mailto:finley.blaylock@wsu.edu">finley.blaylock@wsu.edu</a></p>
+                    <p>Research and Bug Tester: Maximus Upton</p>
+                    <p>Email: <a href="mailto:maximus.upton@wsu.edu">maximus.upton@wsu.edu</a></p>
+                </div>
             </div>
         </div>
     </div>    
-</body>
 <link rel="stylesheet" href="./cssFiles/HomePageStyles.css">
+</body>
 </html>

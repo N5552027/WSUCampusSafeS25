@@ -1,6 +1,6 @@
-import {initializeApp} from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
-import {getFirestore, addDoc, collection} from "https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js"
-import {getAuth, onAuthStateChanged} from "https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js"
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
+import { getFirestore, addDoc, collection, doc, getDoc, getDocs } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js"
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js"
 
 const firebaseConfig = {
     apiKey: "AIzaSyDx5UmD-X7Cv3BN0bRDvFKV2tH7oh6hFYM",
@@ -41,11 +41,26 @@ onAuthStateChanged(auth, (user) => {
     }
 })
 
-const submitReport = document.getElementById('sButton')
-submitReport.addEventListener('click', (event)=>{
+const submitReport = document.getElementById('sButton');
+submitReport.addEventListener('click', async (event) => {
     event.preventDefault();
     const loggedInUserId = localStorage.getItem('loggedInUserId');
-    if(loggedInUserId){
+    if (!loggedInUserId) {
+        console.log("Error: User not found");
+        return;
+    }
+    try {
+        const docRef = doc(db, "Users", loggedInUserId);
+        const docSnap = await getDoc(docRef);
+        if (!docSnap.exists()) {
+            console.log("Error: Cannot find existing user document by user ID");
+            return;
+        }
+        if (docSnap.data().vStatus !== 'Verified') {
+            console.log('User not verified');
+            window.alert('You are not verified, please verify your email address before submitting an incident report');
+            return;
+        }
         const reportData = {
             title: document.getElementById('title').value,
             type: document.getElementById('type').value,
@@ -56,20 +71,56 @@ submitReport.addEventListener('click', (event)=>{
             description: document.getElementById('description').value,
             userid: loggedInUserId
         };
-        
-        const docRef = addDoc(collection(db, "Reports"), reportData)
-        .then(()=>{
-            window.location.href='HomePage.html';                
-        })
-        .catch((error)=>{
-            console.log("Error: Cannot locate document location,", error);
-        })
-    }
-    else{
-        console.log("Error: User not found");
-    }
-})
 
+        await addDoc(collection(db, "Reports"), reportData);
+        sendNotification(reportData);
+
+    } catch (error) {
+        console.log("Error submitting report:", error);
+    }
+});
+
+async function sendNotification(reportData) {
+    const serviceID = "CampusSafe";
+    const templateID = "template_s5tcnp3";
+
+    const spinner = document.getElementById('loading-spinner');
+    spinner.style.display = 'flex';
+
+    try {
+        const querySnapshot = await getDocs(collection(db, "Users"));
+
+        for (const doc of querySnapshot.docs) {
+            const currUserData = doc.data();
+
+            const params = {
+                email: currUserData.email,
+                title: reportData.title,
+                type: reportData.type,
+                date: reportData.time,
+                region: reportData.Campus_Region,
+                building: reportData.Building,
+                description: reportData.description,
+            };
+
+            if (currUserData.vStatus === 'Verified') {
+                try {
+                    const res = await emailjs.send(serviceID, templateID, params);
+                    console.log(res);
+                } catch (emailError) {
+                    console.log("Email send error:", emailError);
+                }
+            } else {
+                console.log("Invalid User Detected");
+            }
+        }
+        window.location.href = 'HomePage.html';
+    } catch (err) {
+        console.error("Error fetching users:", err);
+    } finally {
+        spinner.style.display = 'none';
+    }
+}
 
 const regions = {
     "Hillside": [
@@ -125,7 +176,7 @@ function updateLocationOptions(region) {
 }
 
 // Listen for the change event on the campus selection dropdown
-campusSelection.addEventListener("change", function() {
+campusSelection.addEventListener("change", function () {
     const selectedRegion = campusSelection.value;
     updateLocationOptions(selectedRegion);  // Update location options based on the selected campus
 });

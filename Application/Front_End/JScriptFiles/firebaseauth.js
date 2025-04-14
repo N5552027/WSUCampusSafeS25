@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
-import {getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword} from "https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js"
+import {getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, isSignInWithEmailLink, signInWithEmailLink} from "https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js"
 import {getFirestore, setDoc, doc} from "https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js"
 
 const firebaseConfig = {
@@ -14,12 +14,28 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+const auth = getAuth();
 
 function showMessage(message,divID){
     var messageDiv = document.getElementById(divID);
     messageDiv.style.display = "block";
     messageDiv.innerHTML = message;
     messageDiv.style.opacity = 1;
+}
+
+if (isSignInWithEmailLink(auth, window.location.href)) {
+    window.alert('Email Link Login Detected');
+    let email = window.localStorage.getItem('emailForSignIn');
+    if (!email) {
+      email = window.prompt('Please provide your email for confirmation');
+    }
+    signInWithEmailLink(auth, email, window.location.href)
+      .then((result) => {
+        window.localStorage.removeItem('emailForSignIn');
+      })
+      .catch((error) => {
+        console.log(error.code,error.message);
+      });
 }
 
 const register = document.getElementById('rButton')
@@ -36,7 +52,8 @@ register.addEventListener('click', (event)=>{
         const user = userCredential.user;
         const userData = {
             email: email,
-            fName: fName
+            fName: fName,
+            vStatus: 'Not Verified'
         };
         showMessage('Successfully Created Account', 'registerMessage')
         const docRef = doc(db,"Users", user.uid);
@@ -64,8 +81,6 @@ login.addEventListener('click', (event)=>{
     event.preventDefault();
     const email = document.getElementById('lEmail').value;
     const password = document.getElementById('lPassword').value;
-    const auth = getAuth();
-    const db = getFirestore();
 
     signInWithEmailAndPassword(auth,email,password)
     .then((userCredential)=>{

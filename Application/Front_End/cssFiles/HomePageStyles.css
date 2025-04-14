@@ -54,6 +54,7 @@ header {
 	border:2px solid rgba(255, 255, 255, 0.2);
 	backdrop-filter: blur(10px);
 	width: 900px;
+	height: 474.5px;
 }
 
 .icon {
@@ -126,6 +127,7 @@ svg {
 	}
 }
 
+/* Main */
 .main {
 	display: block; 
     justify-content: center;
@@ -136,6 +138,61 @@ svg {
 	width: 55%;
 	box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
+
+/* Incidents */
+.main .incidentSearch {
+	display: block;
+}
+.main .myIncidentSearch{
+	display: none;
+}
+.main .userSetting {
+	display: none;
+}
+.main .contactUs {
+	display: none;
+}
+/* My Incidents */
+.main.myIncidents .incidentSearch {
+	display: none;
+}
+.main.myIncidents .myIncidentSearch {
+	display: block;
+}
+.main.myIncidents .userSetting {
+	display: none;
+}
+.main.myIncidents .contactUs {
+	display: none;
+}
+/* User Settings */
+.main.userInformation .incidentSearch {
+	display: none;
+}
+.main.userInformation .myIncidentSearch {
+	display: none;
+}
+.main.userInformation .userSetting {
+	display: block;
+}
+.main.userInformation .contactUs {
+	display: none;
+}
+/* Contact Us */
+.main.contactUs .incidentSearch {
+	display: none;
+}
+.main.contactUs .myIncidentSearch {
+	display: none;
+}
+.main.contactUs .userSetting {
+	display: none;
+}
+.main.contactUs .contactUs {
+	display: block;
+}
+
+/* Incident Search */
 .incidentSearch {
 	width: 100%;
 	height: 100%;
@@ -217,6 +274,106 @@ svg {
     border: 1px solid #ccc;
     border-radius: 8px;
     padding: 8px;
+}
+/* My Incident Search */
+.myIncidentSearch {
+	width: 100%;
+	height: 100%;
+	padding: 1.5rem;
+	background-color: white;
+	border-radius: 16px;
+}
+.myIncidentSearch .myIncidentSearchTitle {
+	font-size: 25px;
+	font-weight: bold;
+	text-align: center;
+	margin-bottom: 16px;
+}
+.myIncidentSearch .myIncidentSearchBar {
+	width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+	outline: none;
+}
+.myIncidentSearch .mySortButtons {
+	margin-top: 15px;	
+	display: flex;	
+	justify-content: center;	
+	gap: 8px;
+}
+.mySortButtons .mySortByName {
+	padding-left: 1rem;
+	padding-right: 1rem;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	background-color: #3b82f6;
+	color: white;
+	border-radius: 8px;
+	border: none;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+	&:hover,
+	&:focus {
+		background-color: darkblue;
+	}
+}
+.mySortButtons .mySortByDate {
+	padding-left: 1rem;
+	padding-right: 1rem;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	background-color: #10b981;
+	color: white;
+	border-radius: 8px;
+	border: none;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+	&:hover,
+	&:focus {
+		background-color: darkgreen;
+	}
+}
+.mySortButtons .mySortByTime {
+	padding-left: 1rem;
+	padding-right: 1rem;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	background-color: #ef4444;
+	color: white;
+	border-radius: 8px;
+	border: none;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+	&:hover,
+	&:focus {
+		background-color: darkred;
+	}
+}
+.myIncidentSearch .myIncidentList {
+	margin-top: 16px;
+    max-height: 260px;
+    overflow: auto;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 8px;
+}
+/* User Setting */
+.userSetting {
+	width: 100%;
+	height: 100%;
+	padding: 1.5rem;
+	background-color: white;
+	border-radius: 16px;
+}
+/* Contact Us */
+.main .contactUs {
+	width: 100%;
+	height: 100%;
+	padding: 1.5rem;
+	background-color: white;
+	border-top-right-radius: 16px;
+	border-bottom-right-radius: 16px;
 }
 
 .nav {
