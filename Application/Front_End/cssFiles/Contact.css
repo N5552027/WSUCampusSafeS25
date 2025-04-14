@@ -1,40 +1,63 @@
 body {
     min-height: 100vh;
-    background: url(../Assets/WSUPullmanFBPracticeField.jpg) no-repeat center center fixed;
+    background: url(../Assets/WSUPullmanFBPracticeField.jpg);
+    background-size: cover;
     display: flex;
     flex-direction: column;
+    font-family: "Poppins", sans-serif;
+    width: 100%;
+    margin: 0;
 }
 
 header {
+	top: 0;
+	left: 0;
     background-color: #333;
     color: #fff;
-    padding: 15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
     text-align: center;
-    border-radius: 8px;
-    width: 100vw;
+    width: 100%;
+    box-sizing: border-box;
 }
-
 header nav {
     display: flex;
     justify-content: space-evenly;
-    color:#f4f4f4;
-}
-
-header a {
+    color: #f4f4f4;
     text-decoration-style: none;
+}
+header a{
+    position: relative;
+    font-size: 1.1em;
     color: white;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 40px;
+    transition: 0.5s;
+    display: inline-block;
+}
+header a:hover{
+    transform: scale(1.15);
+}
+.ProjectName  {
+    font-size: 2em;
+    color: white;
+    user-select: none;
 }
 
 .Contact-Us {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 1vw;
     position: relative;
-    left: 7%;
     border-radius: 10px;
     backdrop-filter: blur(10px);
     color: antiquewhite;
-    margin: 1vw;
-    padding: 1vw;
     flex: 1;
-    width: 80%;
 }
 
 .Contact-Us h1 {
@@ -49,8 +72,11 @@ header a {
 
 /* OVERALL CONTACTS CONTAINER */
 .grid-container {
-    position:relative;
-    left: 7%;
+    width: 80%;
+    padding: 1vw;
+    margin: 0 auto;
+    align-items: center;
+    justify-content: center;
 }
 
 /* Shared styles for the grid containers */
@@ -58,12 +84,15 @@ header a {
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* Three equal columns */
     padding: 1vw;
-    margin: 1vw;
     font-size: 1.25em;
     height: 75%;
     width: 75%;
     column-gap: 1vw;
-    width: 80%
+    width: 80%;
+    
+    margin: 0 auto;
+    align-items: center;
+    justify-content: center;
 }
 
 /* Shared styles for the grid items */

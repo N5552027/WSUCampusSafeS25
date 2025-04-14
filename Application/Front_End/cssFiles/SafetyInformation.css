@@ -1,32 +1,53 @@
 /* Global Modifiers */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
 body {
     background-color: #EAE4DB;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: "Poppins", sans-serif;
+    width: 100%;
 }
 
 /* Header */
-
 header {
     background-color: #333;
     color: #fff;
     padding: 15px;
     text-align: center;
-    border-radius: 8px;
-    width: 100vw;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
 }
 
 header nav {
     display: flex;
     justify-content: space-evenly;
-    color:#f4f4f4;
+    color: #f4f4f4;
+    text-decoration-style: none;
 }
 
 header a {
+    text-align: center;
     text-decoration-style: none;
     color: white;
+}
+a {
+    position: relative;
+    font-size: 1.1em;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 40px;
+    transition: 0.5s;
+    display: inline-block;
+}
+a:hover{
+    transform: scale(1.15);
 }
 
 .ProjectName  {
@@ -35,14 +56,8 @@ header a {
     user-select: none;
 }
 
-.navigation a {
-    position: relative;
-    font-size: 1.1em;
-    color: white;
-    text-decoration: none;
-    font-weight: 500;
-    margin-left: 40px;
-}
+
+
 
 /* OVERALL REMINDER */
 .OverallReminder {
@@ -81,6 +96,6 @@ footer {
     color: white;
     padding: 5px;
     text-align: center;
-    margin: 0px -13px -13px -13px;
     border-top: 4px solid maroon;
+    width: 100%;
 }

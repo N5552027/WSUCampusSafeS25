@@ -36,7 +36,7 @@ header {
     user-select: none;
 }
 
-.headerNavigation a {
+.navigation a {
 	padding-top: 0;
 	position: center;
     font-size: 1.1em;
@@ -44,6 +44,19 @@ header {
     text-decoration: none;
     font-weight: 500;
     margin-left: 40px;
+}
+.navigation a{
+    position: relative;
+    font-size: 1.1em;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 40px;
+    transition: 0.5s;
+    display: inline-block;
+}
+.navigation a:hover{
+    transform: scale(1.15);
 }
 
 .container {
@@ -392,19 +405,19 @@ svg {
 		display: inline-block;
 		padding: 0.875em 0;
 		text-decoration: none;
-		transition: color 0.3s ease;
+		transition: 0.5s ease;
 		
 		&:hover,
 		&:focus {
-			color: black;
+			transform: scale(1.1);
 		}
 	}
 	button {
-		color: #8b91b3;
+		color: white;
 		display: inline-block;
+		padding: 1.225em 2.25em;
 		border: none;
 		border-radius: 50px;
-		padding: 0.50em 2.25em;
 		transition: 0.3s ease;
 		background: #ff7739;
 		

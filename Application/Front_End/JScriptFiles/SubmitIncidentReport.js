@@ -52,15 +52,6 @@ submitReport.addEventListener('click', async (event) => {
     try {
         const docRef = doc(db, "Users", loggedInUserId);
         const docSnap = await getDoc(docRef);
-        if (!docSnap.exists()) {
-            console.log("Error: Cannot find existing user document by user ID");
-            return;
-        }
-        if (docSnap.data().vStatus !== 'Verified') {
-            console.log('User not verified');
-            window.alert('You are not verified, please verify your email address before submitting an incident report');
-            return;
-        }
         const reportData = {
             title: document.getElementById('title').value,
             type: document.getElementById('type').value,
@@ -71,6 +62,23 @@ submitReport.addEventListener('click', async (event) => {
             description: document.getElementById('description').value,
             userid: loggedInUserId
         };
+
+        if (!docSnap.exists()) {
+            console.log("Error: Cannot find existing user document by user ID");
+            return;
+        }
+        if (docSnap.data().vStatus !== 'Verified') {
+            console.log('User not verified');
+            window.alert('You are not verified. Your report has been submitted, but no notification will be sent out');
+            addDoc(collection(db, "Reports"), reportData)
+                .then(() => {
+                    window.location.href = 'HomePage.html';
+                })
+                .catch((error) => {
+                    console.log("Error: Cannot locate document location,", error);
+                })
+            return;
+        }
 
         await addDoc(collection(db, "Reports"), reportData);
         sendNotification(reportData);

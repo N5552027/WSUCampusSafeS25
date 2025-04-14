@@ -88,49 +88,6 @@ logoutButton.addEventListener('click', () => {
         })
 })
 
-// Email Verification
-const verifyEmailButton = document.getElementById('verifyEmailButton');
-verifyEmailButton.addEventListener('click', () => {
-    const loggedInUserId = localStorage.getItem('loggedInUserId');
-    if (loggedInUserId) {
-        const docRef = doc(db, "Users", loggedInUserId);
-        getDoc(docRef)
-            .then((docSnap) => {
-                if (docSnap.exists()) {
-                    const userData = docSnap.data();
-                    localStorage.setItem('userEmail', userData.email);
-                    if (userData.vStatus == 'Not Verified') {
-                        sendSignInLinkToEmail(auth, userData.email, actionCodeSettings)
-                            .then(() => {
-
-                            })
-                            .catch((error) => {
-                                console.log(error.code, error.message);
-                            })
-                    }
-                    else {
-                        window.alert('Email is already verified');
-                    }
-                }
-                else {
-                    console.log("Error: Cannot find existing user document by user ID");
-                }
-            })
-            .catch((error) => {
-                console.log("Error: Cannot fetch document,", error);
-            })
-    }
-    else {
-        console.log("Error: User ID not found");
-        window.location.href = 'http://localhost:5000/';
-    }
-})
-
-const actionCodeSettings = {
-    url: 'https://campussafe-4fcb7.web.app/',
-    handleCodeInApp: true
-};
-
 // Loading Page
 window.onload = function() {
     if(!window.location.hash) {

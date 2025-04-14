@@ -1,32 +1,51 @@
 body {
-    font-family: Arial, sans-serif;
-    height: 100vh;
-    align-items: center;
-    display: flex;
+    overflow: hidden;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+	background: url(../Assets/loginbg.jpg);
     flex-direction: column;
-
+    font-family: "Poppins", sans-serif;
     background: url(../Assets/WSUPD-Cars.jpg) no-repeat center center/cover;
 }
 
 .header {
+    position: fixed;
+	top: 0;
+	left: 0;
     background-color: #333;
     color: #fff;
-    padding: 15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
     text-align: center;
     border-radius: 8px;
-    width: 100vw;
+    width: 100%;
+    box-sizing: border-box;
 }
-
 .header nav {
     display: flex;
     justify-content: space-evenly;
     color: #f4f4f4;
     text-decoration-style: none;
 }
-
-.header a {
-    text-decoration-style: none;
+.header a{
+    position: relative;
+    font-size: 1.1em;
     color: white;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 40px;
+    transition: 0.5s;
+    display: inline-block;
+}
+.header a:hover{
+    transform: scale(1.15);
+}
+.ProjectName  {
+    font-size: 2em;
+    color: white;
+    user-select: none;
 }
 
 .container {
@@ -58,7 +77,6 @@ select {
 textarea {
     resize: none;
 }
-
 
 #loading-spinner {
     position: fixed;
