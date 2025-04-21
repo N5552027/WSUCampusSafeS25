@@ -137,8 +137,8 @@ const regions = {
         "Morill Hall", "Murrow Hall", "Stevens Hall", "Wilmer Davis"
     ],
     "Southside": [
-        "Cleveland Hall", "Fulmer Hall", "Gannon-Goldsworthy Residece Hall", "McEachern Residence Hall",
-        "Nieill Hall", "Olympia Student Housing", "Orton Hall", "Owen Science Library", "Rogers Hall",
+        "Cleveland Hall", "Fulmer Hall", "Gannon-Goldsworthy Residence Hall", "McEachern Residence Hall",
+        "Neill Hall", "Olympia Student Housing", "Orton Hall", "Owen Science Library", "Rogers Hall",
         "Shock Physics Building", "Southside Cafe/Market", "SPARK building", "Stephenson Residence Complex",
         "Stimson Hall", "Troy Hall", "Waller Hall", "Washington Building", "Webster Hall"
     ],
