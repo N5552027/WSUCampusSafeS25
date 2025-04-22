@@ -1,0 +1,101 @@
+/* Global Modifiers */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #EAE4DB;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+    width: 100%;
+}
+
+/* Header */
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 15px;
+    text-align: center;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+header nav {
+    display: flex;
+    justify-content: space-evenly;
+    color: #f4f4f4;
+    text-decoration-style: none;
+}
+
+header a {
+    text-align: center;
+    text-decoration-style: none;
+    color: white;
+}
+a {
+    position: relative;
+    font-size: 1.1em;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 40px;
+    transition: 0.5s;
+    display: inline-block;
+}
+a:hover{
+    transform: scale(1.15);
+}
+
+.ProjectName  {
+    font-size: 2em;
+    color: white;
+    user-select: none;
+}
+
+
+
+
+/* OVERALL REMINDER */
+.OverallReminder {
+    background-color: #A60F2D;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    margin:10px;
+}
+
+/*SAFETY INFORMATION*/
+/*Active Shooter*/
+.ActiveShooterContainer {
+    color: #333;
+    padding: 3px;
+    margin:10px;
+}
+
+.ActiveShooterContainer h2 {
+   text-decoration-line: underline;
+}
+
+/*Fire Safety*/
+.FireSafety {
+    color: #333;
+    padding: 3px;
+}
+/*Medical Safety and Advice*/
+
+/*Sexual Assault and Rape*/
+
+/* footer */
+footer {
+    position: relative;
+    background-color: #A60F2D;
+    color: white;
+    padding: 5px;
+    text-align: center;
+    border-top: 4px solid maroon;
+    width: 100%;
+}

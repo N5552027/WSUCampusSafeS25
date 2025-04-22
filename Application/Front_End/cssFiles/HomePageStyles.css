@@ -1,0 +1,437 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+body {
+	overflow: hidden;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+	background: url(../Assets/loginbg.jpg);
+    background-size: cover;
+	background-position: center;
+}
+
+header {
+    position: fixed;
+	top: 0;
+	left: 0;
+	height: 84px;
+    width:100%;
+    padding: 15px 100px;
+    background: grey;
+    border-bottom:4px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ProjectName  {
+    font-size: 2em;
+    color: white;
+    user-select: none;
+}
+
+.navigation a {
+	padding-top: 0;
+	position: center;
+    font-size: 1.1em;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 40px;
+}
+.navigation a{
+    position: relative;
+    font-size: 1.1em;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 40px;
+    transition: 0.5s;
+    display: inline-block;
+}
+.navigation a:hover{
+    transform: scale(1.15);
+}
+
+.container {
+	display: flex;
+	position: center;
+	border-radius: 15px;
+	background: rgb(36, 36, 37);
+	border:2px solid rgba(255, 255, 255, 0.2);
+	backdrop-filter: blur(10px);
+	width: 900px;
+	height: 474.5px;
+}
+
+.icon {
+	fill: none;
+	stroke: white;
+	stroke-width: 3.5;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+}
+
+svg {
+	margin-right: 10px;
+	width: 20px;
+	height: 21px;
+	vertical-align: middle;
+}
+
+.sidebar {
+	padding-top: 40px;
+	padding-bottom: 10px;
+	display: block;
+	align-items: center;
+	justify-content: center;
+	border-top-left-radius: 15px;
+	border-bottom-left-radius: 15px;
+	width: 45%;
+	background-color: grey;
+}
+.sidebarNavigation {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	
+	ul {
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+		display: block;
+	}
+	
+	a {
+		color: white;
+		display: flex;
+		padding: 1em;
+		position: relative;
+		align-items: center;
+		text-decoration: none;
+		font-size: 20px;
+		transition: all 0.3s ease;
+		
+		&:before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 2px;
+			height: 0;
+			transition: height 0.3s ease;
+			background-color: #fff;
+		}
+		
+		&:hover,
+		&:focus {
+			background-color: darkgray;
+			color: #fff;
+			
+			&:before {
+				height: 100%;
+			}
+		}
+	}
+}
+
+/* Main */
+.main {
+	display: block; 
+    justify-content: center;
+    align-items: flex;
+	border-top-right-radius: 15px;
+	border-bottom-right-radius: 15px;
+	background-color: white;
+	width: 55%;
+	box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Incidents */
+.main .incidentSearch {
+	display: block;
+}
+.main .myIncidentSearch{
+	display: none;
+}
+.main .userSetting {
+	display: none;
+}
+.main .contactUs {
+	display: none;
+}
+/* My Incidents */
+.main.myIncidents .incidentSearch {
+	display: none;
+}
+.main.myIncidents .myIncidentSearch {
+	display: block;
+}
+.main.myIncidents .userSetting {
+	display: none;
+}
+.main.myIncidents .contactUs {
+	display: none;
+}
+/* User Settings */
+.main.userInformation .incidentSearch {
+	display: none;
+}
+.main.userInformation .myIncidentSearch {
+	display: none;
+}
+.main.userInformation .userSetting {
+	display: block;
+}
+.main.userInformation .contactUs {
+	display: none;
+}
+/* Contact Us */
+.main.contactUs .incidentSearch {
+	display: none;
+}
+.main.contactUs .myIncidentSearch {
+	display: none;
+}
+.main.contactUs .userSetting {
+	display: none;
+}
+.main.contactUs .contactUs {
+	display: block;
+}
+
+/* Incident Search */
+.incidentSearch {
+	width: 100%;
+	height: 100%;
+	padding: 1.5rem;
+	background-color: white;
+	border-radius: 16px;
+}
+.incidentSearch .incidentSearchTitle {
+	font-size: 25px;
+	font-weight: bold;
+	text-align: center;
+	margin-bottom: 16px;
+}
+.incidentSearch .incidentSearchBar {
+	width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+	outline: none;
+}
+.incidentSearch .sortButtons {
+	margin-top: 15px;	
+	display: flex;	
+	justify-content: center;	
+	gap: 8px;
+}
+.sortButtons .sortByName {
+	padding-left: 1rem;
+	padding-right: 1rem;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	background-color: #3b82f6;
+	color: white;
+	border-radius: 8px;
+	border: none;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+	&:hover,
+	&:focus {
+		background-color: darkblue;
+	}
+}
+.sortButtons .sortByDate {
+	padding-left: 1rem;
+	padding-right: 1rem;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	background-color: #10b981;
+	color: white;
+	border-radius: 8px;
+	border: none;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+	&:hover,
+	&:focus {
+		background-color: darkgreen;
+	}
+}
+.sortButtons .sortByTime {
+	padding-left: 1rem;
+	padding-right: 1rem;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	background-color: #ef4444;
+	color: white;
+	border-radius: 8px;
+	border: none;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+	&:hover,
+	&:focus {
+		background-color: darkred;
+	}
+}
+.incidentSearch .incidentList {
+	margin-top: 16px;
+    max-height: 260px;
+    overflow: auto;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 8px;
+}
+/* My Incident Search */
+.myIncidentSearch {
+	width: 100%;
+	height: 100%;
+	padding: 1.5rem;
+	background-color: white;
+	border-radius: 16px;
+}
+.myIncidentSearch .myIncidentSearchTitle {
+	font-size: 25px;
+	font-weight: bold;
+	text-align: center;
+	margin-bottom: 16px;
+}
+.myIncidentSearch .myIncidentSearchBar {
+	width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+	outline: none;
+}
+.myIncidentSearch .mySortButtons {
+	margin-top: 15px;	
+	display: flex;	
+	justify-content: center;	
+	gap: 8px;
+}
+.mySortButtons .mySortByName {
+	padding-left: 1rem;
+	padding-right: 1rem;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	background-color: #3b82f6;
+	color: white;
+	border-radius: 8px;
+	border: none;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+	&:hover,
+	&:focus {
+		background-color: darkblue;
+	}
+}
+.mySortButtons .mySortByDate {
+	padding-left: 1rem;
+	padding-right: 1rem;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	background-color: #10b981;
+	color: white;
+	border-radius: 8px;
+	border: none;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+	&:hover,
+	&:focus {
+		background-color: darkgreen;
+	}
+}
+.mySortButtons .mySortByTime {
+	padding-left: 1rem;
+	padding-right: 1rem;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	background-color: #ef4444;
+	color: white;
+	border-radius: 8px;
+	border: none;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+	&:hover,
+	&:focus {
+		background-color: darkred;
+	}
+}
+.myIncidentSearch .myIncidentList {
+	margin-top: 16px;
+    max-height: 260px;
+    overflow: auto;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 8px;
+}
+/* User Setting */
+.userSetting {
+	width: 100%;
+	height: 100%;
+	padding: 1.5rem;
+	background-color: white;
+	border-radius: 16px;
+}
+/* Contact Us */
+.main .contactUs {
+	width: 100%;
+	height: 100%;
+	padding: 1.5rem;
+	background-color: white;
+	border-top-right-radius: 16px;
+	border-bottom-right-radius: 16px;
+}
+
+.nav {
+	list-style-type: none;
+}
+
+.nav--manage {
+	display: flex;
+    justify-content: space-between; 
+    align-items: center;
+	padding-left: 30px;
+	padding-right: 30px;
+	a {
+		
+		color: white;
+		display: inline-block;
+		padding: 0.875em 0;
+		text-decoration: none;
+		transition: 0.5s ease;
+		
+		&:hover,
+		&:focus {
+			transform: scale(1.1);
+		}
+	}
+	button {
+		color: white;
+		display: inline-block;
+		padding: 1.225em 2.25em;
+		border: none;
+		border-radius: 50px;
+		transition: 0.3s ease;
+		background: #ff7739;
+		
+		&:hover,
+		&:focus {
+			background: #b32f00;
+			color: #2d325f;
+		}
+	}
+}
+
+.greetingMessage {
+	margin: 0;
+	text-align: center;
+	font-size:30px;
+	color: white;
+}
