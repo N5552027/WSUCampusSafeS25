@@ -11,53 +11,11 @@ const firebaseConfig = {
     appId: "1:957410900492:web:6c9a5a3e972aa877c18c29",
     measurementId: "G-D9TKYYPL71"
 };
-// Initialize Firebase
+
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 const db = getFirestore(app);
-var data = [['Title','Date','Time','Description']];  
-
-onAuthStateChanged(auth, (user) => {
-    const loggedInUserId = localStorage.getItem('loggedInUserId');
-    if (loggedInUserId) {
-        const docRef = doc(db, "Users", loggedInUserId);
-        getDoc(docRef)
-            .then((docSnap) => {
-                if (docSnap.exists()) {
-                    getReports();
-                }
-                else {
-                    console.log("Error: Cannot find existing user document by user ID");
-                }
-            })
-            .catch((error) => {
-                console.log("Error: Cannot fetch document,", error);
-            })
-    }
-    else {
-        console.log("Error: User ID not found");
-        window.location.href = 'login.html';
-    }
-})
-
-// Sort Buttons
-const titleButton = document.getElementById('myTitleButton');
-const dateButton = document.getElementById('myDateButton');
-const timeButton = document.getElementById('myTimeButton');
-titleButton.addEventListener('click', (event)=>{
-    setSortMode('title')
-})
-dateButton.addEventListener('click', (event)=>{
-    setSortMode('date')
-})
-timeButton.addEventListener('click', (event)=>{
-    setSortMode('time')
-})
-
-// Search 
-
-let incidents = [];
-let currentSortMode = 'title';
+var data = [['Title', 'Date', 'Time', 'Description']];
 
 async function getReports() {
     try {
@@ -78,6 +36,71 @@ async function getReports() {
         console.error("Error: Reports collection not found", error);
     }
 }
+
+onAuthStateChanged(auth, (user) => {
+    const loggedInUserId = localStorage.getItem('loggedInUserId');
+    if (loggedInUserId) {
+        const docRef = doc(db, "Users", loggedInUserId);
+        getDoc(docRef)
+            .then((docSnap) => {
+                if (docSnap.exists()) {
+                    getReports().then(() => loadCSV());
+                } else {
+                    console.log("Error: Cannot find existing user document by user ID");
+                }
+            })
+            .catch((error) => {
+                console.log("Error: Cannot fetch document,", error);
+            });
+    } else {
+        console.log("Error: User ID not found");
+        window.location.href = 'login.html';
+    }
+});
+
+// Incident data
+let incidents = [];
+let currentSortMode = 'title';
+
+// Sort Buttons
+const titleButton = document.getElementById('myTitleButton');
+const dateButton = document.getElementById('myDateButton');
+const timeButton = document.getElementById('myTimeButton');
+titleButton.addEventListener('click', (event)=>{
+    setSortMode('title')
+})
+dateButton.addEventListener('click', (event)=>{
+    setSortMode('date')
+})
+timeButton.addEventListener('click', (event)=>{
+    setSortMode('time')
+})
+
+
+// Modal elements
+let modal, modalTitle, modalDateTime, modalDescription, closeModalBtn;
+
+document.addEventListener("DOMContentLoaded", () => {
+    modal = document.getElementById("incidentModal");
+    modalTitle = document.getElementById("modalTitle");
+    modalDateTime = document.getElementById("modalDateTime");
+    modalDescription = document.getElementById("modalDescription");
+    closeModalBtn = document.getElementById("closeModal");
+
+    closeModalBtn?.addEventListener("click", () => {
+        modal.classList.add("hidden");
+        modal.classList.remove("flex");
+    });
+
+    window.addEventListener("click", (e) => {
+        if (e.target === modal) {
+            modal.classList.add("hidden");
+            modal.classList.remove("flex");
+        }
+    });
+
+    document.getElementById("search").addEventListener("input", filterAndDisplay);
+});
 
 async function loadCSV() {
     try {
@@ -101,7 +124,6 @@ function parseCSV(csvText) {
         };
     });
 
-    // Initially sort by name
     incidents.sort((a, b) => a.title.toLowerCase().localeCompare(b.title.toLowerCase()));
     filterAndDisplay();
 }
@@ -117,22 +139,27 @@ function displayResults(filteredIncidents) {
 
     filteredIncidents.forEach(incident => {
         const li = document.createElement("li");
-        li.classList = "p-2 border-b";
-        li.innerHTML = `<strong>${incident.title}</strong> - ${incident.date} ${incident.time} <br> ${incident.description}`;
+        li.classList = "p-2 border-b cursor-pointer hover:bg-gray-100 transition";
+        li.innerHTML = `<strong>${incident.title}</strong> - ${incident.date} ${incident.time}`;
+        li.addEventListener("click", () => showIncidentDetails(incident));
         resultsList.appendChild(li);
     });
 }
 
-document.getElementById("mySearch").addEventListener("input", function () {
-    filterAndDisplay();
-});
+function showIncidentDetails(incident) {
+    if (!modal) return;
+    modalTitle.textContent = incident.title;
+    modalDateTime.textContent = `${incident.date} at ${incident.time}`;
+    modalDescription.textContent = incident.description;
+    modal.classList.remove("hidden");
+    modal.classList.add("flex");
+}
 
 function filterAndDisplay() {
-    const query = document.getElementById("mySearch").value.toLowerCase();
+    const query = document.getElementById("search").value.toLowerCase();
 
-    // Only filter based on title and sort alphabetically
     let filtered = incidents.filter(incident =>
-        incident.title.toLowerCase().startsWith(query)
+        incident.title.toLowerCase().startsWith(query)  // <-- Prefix match only
     );
 
     sortResults(filtered, currentSortMode);
@@ -148,9 +175,9 @@ function sortResults(data, key) {
     if (key === "title") {
         data.sort((a, b) => a.title.toLowerCase().localeCompare(b.title.toLowerCase()));
     } else if (key === "date") {
-        data.sort((a, b) => parseDate(a.date) - parseDate(b.date)); // Earliest date first
+        data.sort((a, b) => parseDate(a.date) - parseDate(b.date));
     } else if (key === "time") {
-        data.sort((a, b) => parseTime(a.time) - parseTime(b.time)); // Earliest time first
+        data.sort((a, b) => parseTime(a.time) - parseTime(b.time));
     }
 }
 
@@ -161,7 +188,5 @@ function parseDate(dateStr) {
 
 function parseTime(timeStr) {
     const [hours, minutes] = timeStr.split(":").map(Number);
-    return hours * 60 + minutes;  // Convert to minutes to make comparison easier
+    return hours * 60 + minutes;
 }
-
-loadCSV();

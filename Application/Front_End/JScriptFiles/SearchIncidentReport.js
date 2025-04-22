@@ -94,7 +94,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // ✅ Fix: Enable live filtering again
     document.getElementById("search").addEventListener("input", filterAndDisplay);
 });
 
