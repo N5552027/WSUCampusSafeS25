@@ -144,7 +144,15 @@
                 </div>
             </div>
         </div>
-    </div>    
+    </div>   
+    <div id="incidentModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+        <div class="bg-white p-6 rounded-xl shadow-xl w-11/12 max-w-lg relative">
+          <button id="closeModal" class="absolute top-2 right-2 text-gray-500 hover:text-red-500 text-xl">&times;</button>
+          <h2 id="modalTitle" class="text-xl font-bold mb-2"></h2>
+          <p id="modalDateTime" class="text-sm text-gray-600 mb-4"></p>
+          <p id="modalDescription" class="text-gray-800 whitespace-pre-wrap"></p>
+        </div>
+    </div>
 <link rel="stylesheet" href="./cssFiles/HomePageStyles.css">
 </body>
 </html>
