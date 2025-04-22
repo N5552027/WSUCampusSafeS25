@@ -90,9 +90,12 @@ logoutButton.addEventListener('click', () => {
 
 // Loading Page
 window.onload = function() {
+    const spinner = document.getElementById('loading-spinner');
     if(!window.location.hash) {
-        window.location = window.location + '#loaded';
+        spinner.style.display = 'flex';      
         setTimeout(function(){
+            window.location = window.location + '#loaded';
+            spinner.style.display = 'none';
             window.location.reload();
         }, 1000)        
     };

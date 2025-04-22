@@ -99,7 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    document.getElementById("search").addEventListener("input", filterAndDisplay);
+    document.getElementById("mySearch").addEventListener("input", filterAndDisplay);
 });
 
 async function loadCSV() {
@@ -156,7 +156,7 @@ function showIncidentDetails(incident) {
 }
 
 function filterAndDisplay() {
-    const query = document.getElementById("search").value.toLowerCase();
+    const query = document.getElementById("mySearch").value.toLowerCase();
 
     let filtered = incidents.filter(incident =>
         incident.title.toLowerCase().startsWith(query)  // <-- Prefix match only
