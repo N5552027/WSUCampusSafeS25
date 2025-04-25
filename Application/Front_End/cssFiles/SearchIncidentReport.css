@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: url(../Assets/WSU-Night.jpg);
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px 100px;
+    background-color: #333;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10;
+    font-family: Arial, sans-serif;
+}
+
+.ProjectName {
+    font-size: 2em;
+    color: white;
+    user-select: none;
+    font-family: Arial, sans-serif;
+}
+
+.headerNavigation a {
+    font-size: 1.1em;
+    color: white;
+    text-decoration: none;
+    font-weight: normal;
+    margin-left: 40px;
+    font-family: Arial, sans-serif;
+}
+
+/* Search Tile Container */
+.search-container {
+    margin-top: 140px; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 700px;
+    padding: 30px;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(5px);
+    text-align: center;
+}
+
+.search-container input {
+    width: 80%;
+    padding: 12px 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+.search-container button {
+    margin: 0 10px;
+    padding: 10px 20px;
+    font-size: 15px;
+    border-radius: 6px;
+    border: none;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
+
+.search-container button:hover {
+    background-color: #333;
+}

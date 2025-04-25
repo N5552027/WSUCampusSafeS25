@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Incident Search</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="./cssFiles/SearchIncidentReport.css" />
+
+  <!-- JavaScript -->
+  <script type="module" src="./JScriptFiles/SearchIncidentReport.js"></script>
+</head>
+
+<body class="custom-background min-h-screen bg-cover bg-center text-gray-900">
+  <!-- Navigation Header -->
+  <header>
+    <div class="ProjectName">WSU CampusSafe</div>
+    <nav class="headerNavigation">
+      <a href="HomePage.html">Home</a>
+      <a href="SafetyInformation.html">Safety Information</a>
+      <a href="SubmitIncidentReport.html">Submit Incident Report</a>
+      <a href="FeedbackForm.html">Feedback Form</a>
+      <a href="Contact.html">Contact Us</a>
+    </nav>
+  </header>
+
+  <!-- Main Search Section -->
+  <div class="flex flex-grow items-center justify-center pt-24 px-4">
+    <div class="w-full max-w-2xl p-6 bg-white bg-opacity-90 rounded-2xl shadow-lg">
+      <h1 class="text-2xl font-bold text-center mb-6">Incident Search</h1>
+
+      <!-- Search Bar -->
+      <input
+        id="search"
+        type="text"
+        placeholder="Search incidents..."
+        class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
+
+      <!-- Sort Buttons -->
+      <div class="mt-4 flex justify-center gap-3">
+        <button onclick="setSortMode('title')" class="px-4 py-2 bg-black text-white rounded hover:bg-gray-800">Sort by Name</button>
+        <button onclick="setSortMode('date')" class="px-4 py-2 bg-black text-white rounded hover:bg-gray-800">Sort by Date</button>
+        <button onclick="setSortMode('time')" class="px-4 py-2 bg-black text-white rounded hover:bg-gray-800">Sort by Time</button>
+      </div>
+
+      <!-- Results Section -->
+      <ul id="results" class="mt-6 max-h-80 overflow-auto border rounded-lg p-3 bg-white bg-opacity-80"></ul>
+    </div>
+  </div>
+
+  <!-- Incident Report Modal -->
+  <div id="incidentModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+    <div class="bg-white p-6 rounded-xl shadow-xl w-11/12 max-w-lg relative">
+      <button id="closeModal" class="absolute top-2 right-2 text-gray-500 hover:text-red-500 text-xl">&times;</button>
+      <h2 id="modalTitle" class="text-xl font-bold mb-2"></h2>
+      <p id="modalDateTime" class="text-sm text-gray-600 mb-4"></p>
+      <p id="modalDescription" class="text-gray-800 whitespace-pre-wrap"></p>
+    </div>
+  </div>
+</body>
+</html>
