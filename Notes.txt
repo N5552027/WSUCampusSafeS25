@@ -1,6 +1,0 @@
-Removed PublicSafetyInformation.html *Redundant: Outdated version of SafetyInformation.html
-Removed PublicSafetyInformation.css *Redundant: Outdated version of SafetyInformation.css 
-Removed Homepage.css *Redundant: Not used by HomePage.html
-
-Renamed collection folders to 'Users, Reports, Feedback forms' *Enhance: Makes Database look more refined
-Refined SafetyInformation.html to fit elements into page, updated the header to maintain consistency with the other pages, defined header and footer as sections of webpage *Enhance: enforced consistency across pages and fixed element overflow
